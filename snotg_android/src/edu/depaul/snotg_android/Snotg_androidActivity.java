@@ -9,6 +9,8 @@ public class Snotg_androidActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-        //change to test.
+        
+
+        
     }
 }
