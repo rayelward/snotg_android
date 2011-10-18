@@ -2,4 +2,5 @@
 <resources>
     <string name="hello">Hello World, Snotg_androidActivity!</string>
     <string name="app_name">snotg_android</string>
+    <string name="username">username</string>
 </resources>
