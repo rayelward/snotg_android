@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <TextView android:text="Username:" android:layout_height="wrap_content" android:id="@+id/textView1" android:layout_width="wrap_content" android:layout_alignParentTop="true" android:layout_alignParentLeft="true" android:layout_alignParentRight="true"></TextView>
+    <EditText android:id="@+id/editText1" android:layout_height="wrap_content" android:inputType="textEmailAddress" android:layout_width="wrap_content" android:layout_below="@+id/textView1" android:layout_alignParentLeft="true" android:layout_alignParentRight="true">
+        <requestFocus></requestFocus>
+    </EditText>
+    <TextView android:text="Password" android:layout_height="wrap_content" android:id="@+id/textView2" android:layout_width="wrap_content" android:layout_below="@+id/editText1" android:layout_alignParentLeft="true" android:layout_alignParentRight="true"></TextView>
+    <EditText android:id="@+id/editText2" android:layout_height="wrap_content" android:inputType="textPassword" android:layout_width="wrap_content" android:layout_below="@+id/textView2" android:layout_alignParentLeft="true" android:layout_alignParentRight="true"></EditText>
+    <Button android:text="Login" android:layout_height="wrap_content" android:id="@+id/button1" android:layout_width="wrap_content" android:layout_below="@+id/editText2" android:layout_centerHorizontal="true" android:layout_marginTop="19dp"></Button>
+</RelativeLayout>
