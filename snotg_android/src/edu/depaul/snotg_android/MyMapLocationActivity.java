@@ -9,7 +9,7 @@ import com.google.android.maps.MapView;
 import com.google.android.maps.MyLocationOverlay;
 
 public class MyMapLocationActivity extends MapActivity {
-
+	//testing commit from GARRY
 	private MapView mapView;
 	private MyLocationOverlay myLocationOverlay;
 	
