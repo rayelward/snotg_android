@@ -4,4 +4,15 @@
     <string name="app_name">snotg_android</string>
     <string name="username">username</string>
     <string name="map_key">0w8L4-yLsUNCLeisCOdcwbLQsj1xiFKdRxG9sRg</string>
+    
+    <!-- Garry's Map Strings -->
+    <string name="locLabel">Location:</string>
+    <string name="goLabel">Go</string>
+    <string name="latLabel">Lat</string>
+    <string name="longLabel">Long</string>
+    <string name="trackLabel">Track Present Location</string>
+    <string name="satLabel">Sat</string>
+    <string name="mapLabel">Map</string>
+    <string name="nearbyUsers">Nearby Users</string>
+    
 </resources>

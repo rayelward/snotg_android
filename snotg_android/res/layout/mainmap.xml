@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+      android:orientation="vertical"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:padding="10dip">
+    
+        <LinearLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal">
+            
+            <EditText
+                android:id="@+id/geocode_input"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:hint="(Place name)"
+                android:lines="1"
+                android:inputType="text" />
+        
+            <Button 
+                android:id="@+id/geocode_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/goLabel" />
+                
+            
+            
+                        
+        </LinearLayout>
+                
+        <LinearLayout 
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:padding="3sp"
+            android:orientation="horizontal">
+                
+            <EditText
+                android:id="@+id/lat_input"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:hint="(Lat deg)"
+                android:lines="1"
+                android:inputType="numberDecimal|numberSigned" />
+        
+            <EditText
+                android:id="@+id/lon_input"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:hint="(Lon deg)"
+                android:lines="1"
+                android:inputType="numberDecimal|numberSigned" />
+        
+            <Button 
+                android:id="@+id/latlong_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/goLabel" />
+                        
+        </LinearLayout>
+                
+            <Button 
+                android:id="@+id/presentLocation_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/trackLabel" />
+                    
+    </LinearLayout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content">
+  
+  <view android:id="@+id/mv2"
+  		class="com.google.android.maps.MapView"
+  		android:layout_width="fill_parent"
+  		android:layout_height="fill_parent"
+  		android:layout_weight="1"
+  		android:clickable="true"
+  		android:apiKey="0UZbSpvZ24TWc1ZhrHVoLSbqJgFjbFEWQRj_Quw"
+  		/>
+  
+  <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" 
+            android:padding="0px"           
+            >
+
+	<Button android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" 
+		android:textSize="12sp" 
+		android:layout_alignParentBottom="true"
+		android:text="@string/nearbyUsers" 
+		android:id="@+id/doAccess"></Button>
+  
+  </RelativeLayout>
+  
+    
+</FrameLayout>
