@@ -32,6 +32,7 @@ public class DisplayOverlay extends Overlay {
 			canvas.drawText("Lat = "+lat+"  Long = "+lon+"  Alt = "+(int)altitude+" m", 8, 14, paint);
 			canvas.drawText("Sat = "+numberSats+" Accur = "+(int)satAccuracy+" m"
                     +" speed = "+(int)speed+" m/s  bearing = "+(int)bearing+" deg", 8, 27, paint);
+			canvas.drawText("Depaul Coordinates to USE = "+"41.9249247"+"  , = "+"-87.6550303", 8, 41, paint);
 		}
 	}
 	

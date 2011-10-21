@@ -10,7 +10,7 @@
   		android:layout_height="fill_parent"
   		android:layout_weight="1"
   		android:clickable="true"
-  		android:apiKey="0UZbSpvZ24TWc1ZhrHVoLSbqJgFjbFEWQRj_Quw"
+  		android:apiKey="@string/map_key"
   		/>
   
   <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
