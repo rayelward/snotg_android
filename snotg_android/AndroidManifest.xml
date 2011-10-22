@@ -15,6 +15,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- main menu defined by Ray. -->
+        <activity android:name=".MainMenuActivity" android:label="Main Menu"></activity>
         
         <!-- Garry Defined Activities for Mapping -->
         <activity android:name=".AndroidMapActivity" android:label="Map Activity"></activity>        

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent" android:weightSum="1">
+    <RelativeLayout android:id="@+id/relativeLayout1" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="0.64">
+        <Button android:id="@+id/profile_button" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/profile" android:layout_alignParentTop="true" android:layout_alignParentLeft="true" android:layout_marginLeft="34dp" android:layout_marginTop="28dp"></Button>
+        <Button android:id="@+id/map_button" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/map" android:layout_above="@+id/settings_button" android:layout_centerHorizontal="true"></Button>
+        <Button android:id="@+id/settings_button" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/settings" android:layout_below="@+id/profile_button" android:layout_alignLeft="@+id/map_button" android:layout_marginTop="26dp"></Button>
+        <Button android:id="@+id/list_button" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/list" android:layout_alignBaseline="@+id/settings_button" android:layout_alignBottom="@+id/settings_button" android:layout_alignLeft="@+id/profile_button" android:layout_alignRight="@+id/profile_button"></Button>
+    </RelativeLayout>
+    
+</LinearLayout>

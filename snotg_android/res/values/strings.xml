@@ -3,7 +3,7 @@
     <string name="hello">Hello World, Snotg_androidActivity!</string>
     <string name="app_name">snotg_android</string>
     <string name="username">username</string>
-    <string name="map_key">0UZbSpvZ24TWc1ZhrHVoLSbqJgFjbFEWQRj_Quw</string>
+    <string name="map_key">0w8L4-yLsUND38g690Fl0DcGS3g2O59-5IUhPhg</string>
     
     <!-- Garry's Map Strings -->
     <string name="locLabel">Location:</string>
@@ -14,5 +14,9 @@
     <string name="satLabel">Sat</string>
     <string name="mapLabel">Map</string>
     <string name="nearbyUsers">Nearby Users</string>
+    <string name="profile">Profile</string>
+    <string name="map">Map</string>
+    <string name="list">List</string>
+    <string name="settings">Settings</string>
     
 </resources>
