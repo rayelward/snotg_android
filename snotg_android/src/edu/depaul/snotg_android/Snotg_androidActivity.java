@@ -23,7 +23,7 @@ public class Snotg_androidActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		
-		//go from profile to the main menu!
+		//go to main menu from login
 		Intent m = new Intent(this, MainMenuActivity.class);
 		startActivity(m);		
 	}
