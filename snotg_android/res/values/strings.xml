@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, Snotg_androidActivity!</string>
-    <string name="app_name">snotg_android</string>
+    <string name="hello">Hello World, welcome to SNotG!</string>
+    <string name="app_name">SNotG!</string>
     <string name="username">username</string>
-    <string name="map_key">0w8L4-yLsUND38g690Fl0DcGS3g2O59-5IUhPhg</string>
+    <string name="map_key">0z2Vz2q4WuDjNmM-rACmYxa1DGISMVyQ1Daqzzw</string>
     
     <!-- Garry's Map Strings -->
     <string name="locLabel">Location:</string>
@@ -18,5 +18,15 @@
     <string name="map">Map</string>
     <string name="list">List</string>
     <string name="settings">Settings</string>
-    
+
+    <!-- Profile strings -->
+	<string name="profile_name">\"Heine Schmidt\"</string> 
+	<string name="i_am_curr">"I am currently - "</string> 
+	<string-array name="arr_online_status">
+		<item>On-line</item> 
+		<item>Off-line</item> 
+	</string-array>
+	<string name="profile_shout">Yo yo yo. I am at DePaul CDM!</string> 
+	<string name="profile_descr">I am interested in creating a new android social media app. I want to use Java and incorportate geo-spatial functionality. Is there anyone out there interested?</string> 
+        
 </resources>

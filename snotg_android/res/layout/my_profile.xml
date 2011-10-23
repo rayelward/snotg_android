@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent" >
+
+    <EditText
+        android:id="@+id/editTextShout"
+        android:layout_width="274dp"
+        android:layout_height="64dp"
+        android:layout_x="18dp"
+        android:layout_y="181dp"
+        android:inputType="textMultiLine"
+        android:text="@string/profile_shout" />
+
+    <EditText
+        android:id="@+id/EditTextDescr"
+        android:layout_width="251dp"
+        android:layout_height="106dp"
+        android:layout_x="24dp"
+        android:layout_y="262dp"
+        android:inputType="textMultiLine"
+        android:text="@string/profile_descr" />
+
+    <Button
+        android:id="@+id/go_to_maps"
+        android:layout_width="113px"
+        android:layout_height="wrap_content"
+        android:layout_x="122dp"
+        android:layout_y="390dp"
+        android:text="To Circles" />
+
+    <Spinner
+        android:id="@+id/drop_status"
+        android:layout_width="154dp"
+        android:layout_height="wrap_content"
+        android:layout_x="123dp"
+        android:layout_y="78dp" />
+
+    <TextView
+        android:id="@+id/TextView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="125dp"
+        android:layout_y="51dp"
+        android:text="@string/i_am_curr" />
+
+    <Gallery
+        android:id="@+id/gallery1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="48dp"
+        android:layout_y="59dp" />
+
+    <ImageView
+        android:id="@+id/avatar_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="18dp"
+        android:layout_y="52dp"
+        android:src="@drawable/avatar_img" />
+
+    <TextView
+        android:id="@+id/profile_name"
+        android:layout_width="260dp"
+        android:layout_height="32dp"
+        android:layout_x="17dp"
+        android:layout_y="14dp"
+        android:text="@string/profile_name"
+        android:textSize="24sp" />
+
+</AbsoluteLayout>
