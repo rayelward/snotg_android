@@ -33,8 +33,8 @@ public class MainMenuActivity extends Activity implements OnClickListener {
 		switch (v.getId()) {
 		
 		case R.id.profile_button:
-			//TODO, once profile is created this can take you there.
-			Toast.makeText(context, "TODO! Profile", Toast.LENGTH_SHORT).show();
+			startActivity(new Intent(context, MyProfileActivity.class));
+			//Toast.makeText(context, "TODO! Profile", Toast.LENGTH_SHORT).show();
 			break;
 		case R.id.map_button:
 			startActivity(new Intent(context, AndroidMapActivity.class));
