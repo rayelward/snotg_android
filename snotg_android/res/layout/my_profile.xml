@@ -21,14 +21,6 @@
         android:inputType="textMultiLine"
         android:text="@string/profile_descr" />
 
-    <Button
-        android:id="@+id/go_to_maps"
-        android:layout_width="113px"
-        android:layout_height="wrap_content"
-        android:layout_x="122dp"
-        android:layout_y="390dp"
-        android:text="To Circles" />
-
     <Spinner
         android:id="@+id/drop_status"
         android:layout_width="154dp"
@@ -68,4 +60,20 @@
         android:text="@string/profile_name"
         android:textSize="24sp" />
 
+    <Button
+        android:id="@+id/ProfileTest"
+        android:layout_width="wrap_content"
+        android:layout_height="34dp"
+        android:layout_x="28dp"
+        android:layout_y="378dp"
+        android:text="Ping the Google App Engine" />
+
+    <TextView
+        android:id="@+id/GAE_ping_return"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="28dp"
+        android:layout_y="435dp"
+        android:text="" />
+        
 </AbsoluteLayout>
