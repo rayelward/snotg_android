@@ -24,7 +24,8 @@ public class Snotg_androidActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		
 		//go to main menu from login
-		Intent m = new Intent(this, MainMenuActivity.class);
+		
+		Intent m = new Intent(this, TabBarWidget.class);
 		startActivity(m);		
 	}
 }

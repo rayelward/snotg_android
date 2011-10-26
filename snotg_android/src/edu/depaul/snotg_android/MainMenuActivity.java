@@ -1,5 +1,9 @@
 package edu.depaul.snotg_android;
 
+
+/*
+ * Main menu no longer needed now that we are based off of a tab view.
+ */
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;

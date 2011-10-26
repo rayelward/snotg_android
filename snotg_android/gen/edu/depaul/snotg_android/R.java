@@ -16,9 +16,21 @@ public final class R {
     public static final class drawable {
         public static final int avatar_img=0x7f020000;
         public static final int ic_maps_indicator_current_position=0x7f020001;
-        public static final int icon=0x7f020002;
-        public static final int map_cube=0x7f020003;
-        public static final int user=0x7f020004;
+        public static final int ic_tab_list=0x7f020002;
+        public static final int ic_tab_list_grey=0x7f020003;
+        public static final int ic_tab_list_white=0x7f020004;
+        public static final int ic_tab_map=0x7f020005;
+        public static final int ic_tab_map_grey=0x7f020006;
+        public static final int ic_tab_map_white=0x7f020007;
+        public static final int ic_tab_profile=0x7f020008;
+        public static final int ic_tab_profile_grey=0x7f020009;
+        public static final int ic_tab_profile_white=0x7f02000a;
+        public static final int ic_tab_settings=0x7f02000b;
+        public static final int ic_tab_settings_grey=0x7f02000c;
+        public static final int ic_tab_settings_white=0x7f02000d;
+        public static final int icon=0x7f02000e;
+        public static final int map_cube=0x7f02000f;
+        public static final int user=0x7f020010;
     }
     public static final class id {
         public static final int EditTextDescr=0x7f060014;
@@ -60,6 +72,7 @@ public final class R {
         public static final int my_location_map=0x7f030005;
         public static final int my_profile=0x7f030006;
         public static final int showthemap=0x7f030007;
+        public static final int tab_bar_layout=0x7f030008;
     }
     public static final class string {
         public static final int app_name=0x7f040001;
