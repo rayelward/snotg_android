@@ -4,6 +4,9 @@
     <string name="app_name">SNotG!</string>
     <string name="username">username</string>
     <string name="map_key">0z2Vz2q4WuDjNmM-rACmYxa1DGISMVyQ1Daqzzw</string>
+
+    <!-- EXTERNALIZE Google App Engine url http://snotgdepaul1.appspot.com/user"  -->
+    <string name="app_engine_url">10.0.2.2</string>
     
     <!-- Garry's Map Strings -->
     <string name="locLabel">Location:</string>
