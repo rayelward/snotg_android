@@ -1,9 +1,12 @@
-package edu.depaul.snotg_android;
+package edu.depaul.snotg_android.Activity;
 
 
 /*
  * Main menu no longer needed now that we are based off of a tab view.
  */
+import edu.depaul.snotg_android.R;
+import edu.depaul.snotg_android.R.id;
+import edu.depaul.snotg_android.R.layout;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;

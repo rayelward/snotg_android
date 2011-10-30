@@ -1,5 +1,9 @@
-package edu.depaul.snotg_android;
+package edu.depaul.snotg_android.Activity;
 
+import edu.depaul.snotg_android.R;
+import edu.depaul.snotg_android.Layout.TabBarWidget;
+import edu.depaul.snotg_android.R.id;
+import edu.depaul.snotg_android.R.layout;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

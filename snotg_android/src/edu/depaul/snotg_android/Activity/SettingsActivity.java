@@ -1,4 +1,4 @@
-package edu.depaul.snotg_android;
+package edu.depaul.snotg_android.Activity;
 
 import android.app.Activity;
 import android.os.Bundle;

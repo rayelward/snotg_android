@@ -1,6 +1,13 @@
-package edu.depaul.snotg_android;
+package edu.depaul.snotg_android.Layout;
 
 
+import edu.depaul.snotg_android.R;
+import edu.depaul.snotg_android.Activity.AndroidMapActivity;
+import edu.depaul.snotg_android.Activity.MyProfileActivity;
+import edu.depaul.snotg_android.Activity.NearbyListActivity;
+import edu.depaul.snotg_android.Activity.SettingsActivity;
+import edu.depaul.snotg_android.R.drawable;
+import edu.depaul.snotg_android.R.layout;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.content.res.Resources;

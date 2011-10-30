@@ -1,4 +1,4 @@
-package edu.depaul.snotg_android;
+package edu.depaul.snotg_android.Map;
 
 import java.util.ArrayList;
 
@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.ItemizedOverlay;
 import com.google.android.maps.OverlayItem;
+
 
 public class MyUsersOverlay extends ItemizedOverlay {
 	

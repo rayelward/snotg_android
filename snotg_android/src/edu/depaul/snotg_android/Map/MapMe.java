@@ -1,4 +1,4 @@
-package edu.depaul.snotg_android;
+package edu.depaul.snotg_android.Map;
 
 import java.util.List;
 
@@ -23,6 +23,11 @@ import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
+
+import edu.depaul.snotg_android.R;
+import edu.depaul.snotg_android.R.drawable;
+import edu.depaul.snotg_android.R.id;
+import edu.depaul.snotg_android.R.layout;
 
 public class MapMe extends MapActivity implements LocationListener, OnClickListener{
 	

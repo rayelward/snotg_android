@@ -1,4 +1,4 @@
-package edu.depaul.snotg_android;
+package edu.depaul.snotg_android.Activity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,6 +15,11 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import edu.depaul.snotg_android.R;
+import edu.depaul.snotg_android.R.array;
+import edu.depaul.snotg_android.R.id;
+import edu.depaul.snotg_android.R.layout;
 
 import android.app.Activity;
 import android.content.Context;

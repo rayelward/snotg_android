@@ -1,5 +1,10 @@
-package edu.depaul.snotg_android;
+package edu.depaul.snotg_android.Activity;
 
+import edu.depaul.snotg_android.R;
+import edu.depaul.snotg_android.Map.MapMe;
+import edu.depaul.snotg_android.Map.ShowTheMap;
+import edu.depaul.snotg_android.R.id;
+import edu.depaul.snotg_android.R.layout;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;

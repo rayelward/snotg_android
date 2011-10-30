@@ -1,4 +1,4 @@
-package edu.depaul.snotg_android;
+package edu.depaul.snotg_android.Map;
 
 import android.content.Context;
 

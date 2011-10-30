@@ -16,7 +16,7 @@
         
         <activity
             android:label="@string/app_name"
-            android:name=".Snotg_androidActivity"
+            android:name=".Activity.Snotg_androidActivity"
             android:theme="@android:style/Theme.NoTitleBar" >
             <intent-filter >
                 <action android:name="android.intent.action.MAIN" />
@@ -27,41 +27,41 @@
         <!-- main menu defined by Ray. -->
         <activity
             android:label="Main Menu"
-            android:name=".MainMenuActivity" >
+            android:name=".Activity.MainMenuActivity" >
         </activity>
         
-        <activity android:name=".TabBarWidget"
+        <activity android:name=".Layout.TabBarWidget"
                  android:label="@string/app_name"
                  android:theme="@android:style/Theme.NoTitleBar">
         </activity>
         <activity 
              android:label="Nearby List Activity"
-             android:name=".NearbyListActivity"
+             android:name=".Activity.NearbyListActivity"
              android:theme="@android:style/Theme.NoTitleBar">
         </activity>
         <activity 
              android:label="Settings Activity"
-             android:name=".SettingsActivity"
+             android:name=".Activity.SettingsActivity"
              android:theme="@android:style/Theme.NoTitleBar">
         </activity>
 
         <!-- Garry Defined Activities for Mapping -->
         <activity
             android:label="Map Activity"
-            android:name=".AndroidMapActivity" >
+            android:name=".Activity.AndroidMapActivity" >
         </activity>
         <activity
             android:label="Lat/Long Location"
-            android:name=".ShowTheMap" >
+            android:name=".Map.ShowTheMap" >
         </activity>
         <activity
             android:label="Track Present Location"
-            android:name=".MapMe" >
+            android:name=".Map.MapMe" >
         </activity>
 
         <uses-library android:name="com.google.android.maps" />
 
-        <activity android:name=".MyProfileActivity" />
+        <activity android:name=".Activity.MyProfileActivity" />
     </application>
 
 </manifest>

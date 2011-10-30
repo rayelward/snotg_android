@@ -1,4 +1,4 @@
-package edu.depaul.snotg_android;
+package edu.depaul.snotg_android.Activity;
 
 import android.os.Bundle;
 import android.widget.Toast;
@@ -7,6 +7,10 @@ import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
 import com.google.android.maps.MyLocationOverlay;
+
+import edu.depaul.snotg_android.R;
+import edu.depaul.snotg_android.R.id;
+import edu.depaul.snotg_android.R.layout;
 
 public class MyMapLocationActivity extends MapActivity {
 	//testing commit from GARRY
