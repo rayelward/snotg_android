@@ -28,7 +28,7 @@ public class TabBarWidget extends TabActivity {
 	    intent = new Intent().setClass(this, MyProfileActivity.class);
 
 	    // Initialize a TabSpec for each tab and add it to the TabHost
-	    //TODO: image icons
+	    
 	    spec = tabHost.newTabSpec("profile").setIndicator("Profile",
 	                      res.getDrawable(R.drawable.ic_tab_profile))
 	                  .setContent(intent);
@@ -55,6 +55,6 @@ public class TabBarWidget extends TabActivity {
 	                  .setContent(intent);
 	    tabHost.addTab(spec);
 
-	    tabHost.setCurrentTab(2);
+	    tabHost.setCurrentTab(0);
 	}
 }

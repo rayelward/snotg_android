@@ -75,29 +75,32 @@ public final class R {
         public static final int tab_bar_layout=0x7f030008;
     }
     public static final class string {
+        /**  EXTERNALIZE Google App Engine url http://snotgdepaul1.appspot.com/user"  
+         */
+        public static final int app_engine_url=0x7f040004;
         public static final int app_name=0x7f040001;
-        public static final int goLabel=0x7f040005;
+        public static final int goLabel=0x7f040006;
         public static final int hello=0x7f040000;
-        public static final int i_am_curr=0x7f040011;
-        public static final int latLabel=0x7f040006;
-        public static final int list=0x7f04000e;
+        public static final int i_am_curr=0x7f040012;
+        public static final int latLabel=0x7f040007;
+        public static final int list=0x7f04000f;
         /**  Garry's Map Strings 
          */
-        public static final int locLabel=0x7f040004;
-        public static final int longLabel=0x7f040007;
-        public static final int map=0x7f04000d;
-        public static final int mapLabel=0x7f04000a;
+        public static final int locLabel=0x7f040005;
+        public static final int longLabel=0x7f040008;
+        public static final int map=0x7f04000e;
+        public static final int mapLabel=0x7f04000b;
         public static final int map_key=0x7f040003;
-        public static final int nearbyUsers=0x7f04000b;
-        public static final int profile=0x7f04000c;
-        public static final int profile_descr=0x7f040013;
+        public static final int nearbyUsers=0x7f04000c;
+        public static final int profile=0x7f04000d;
+        public static final int profile_descr=0x7f040014;
         /**  Profile strings 
          */
-        public static final int profile_name=0x7f040010;
-        public static final int profile_shout=0x7f040012;
-        public static final int satLabel=0x7f040009;
-        public static final int settings=0x7f04000f;
-        public static final int trackLabel=0x7f040008;
+        public static final int profile_name=0x7f040011;
+        public static final int profile_shout=0x7f040013;
+        public static final int satLabel=0x7f04000a;
+        public static final int settings=0x7f040010;
+        public static final int trackLabel=0x7f040009;
         public static final int username=0x7f040002;
     }
 }
