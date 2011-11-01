@@ -30,7 +30,8 @@ public final class R {
         public static final int ic_tab_settings_white=0x7f02000d;
         public static final int icon=0x7f02000e;
         public static final int map_cube=0x7f02000f;
-        public static final int user=0x7f020010;
+        public static final int snotg_launch_icon=0x7f020010;
+        public static final int user=0x7f020011;
     }
     public static final class id {
         public static final int EditTextDescr=0x7f060014;
