@@ -16,9 +16,6 @@ gen/
 # Local configuration file (sdk path, etc)
 local.properties
 
-##Ignoring for JAVA
-*.class
-
 # Package Files #
 *.jar
 *.war
