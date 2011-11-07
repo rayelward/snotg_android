@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, welcome to SNotG!</string>
+    <string name="hello">Welcome to Social Networking on the Go!</string>
     <string name="app_name">SNotG!</string>
     <string name="username">username</string>
     <string name="map_key">0z2Vz2q4WuDjNmM-rACmYxa1DGISMVyQ1Daqzzw</string>
