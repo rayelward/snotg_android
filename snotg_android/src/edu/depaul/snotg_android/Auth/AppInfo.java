@@ -81,8 +81,8 @@ public class AppInfo extends Activity {
 			try {
 				// Don't follow redirects
 				http_client.getParams().setBooleanParameter(ClientPNames.HANDLE_REDIRECTS, false);
-
-				HttpGet http_get = new HttpGet("https://yourapp.appspot.com/_ah/login?continue=http://localhost/&auth=" + tokens[0]);
+//TODO externalize url
+				HttpGet http_get = new HttpGet("http://snotgdepaul1.appspot.com/_ah/login?continue=http://snotgdepaul1.appspot.com/&auth=" + tokens[0]);
 				HttpResponse response;
 				response = http_client.execute(http_get);
 				if(response.getStatusLine().getStatusCode() != 302)
