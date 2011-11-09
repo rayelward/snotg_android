@@ -1,5 +1,9 @@
 package edu.depaul.snotg_android.Map;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 
 import com.google.android.maps.MapView;
@@ -19,6 +23,10 @@ public class DisplayOverlay extends Overlay {
 	private String currentProvider;
 	public static boolean showData = true;
 	
+	//private final Context context;
+	//Bitmap _scratch = BitmapFactory.decodeResource(getResources(), R.drawable.icon);
+
+	
 	@Override
 	public void draw(Canvas canvas, MapView mapview, boolean shadow){
 		super.draw(canvas, mapview, shadow);
@@ -29,6 +37,8 @@ public class DisplayOverlay extends Overlay {
 			canvas.drawRect(0,0,350,33,paint);
 			paint.setTextSize(11);
 			paint.setARGB(180,0,0,0);
+		    canvas.drawColor(Color.BLACK);
+		    //canvas.drawBitmap(_scratch, 10, 10, null);
 			canvas.drawText("Lat = "+lat+"  Long = "+lon+"  Alt = "+(int)altitude+" m", 8, 14, paint);
 			canvas.drawText("Sat = "+numberSats+" Accur = "+(int)satAccuracy+" m"
                     +" speed = "+(int)speed+" m/s  bearing = "+(int)bearing+" deg", 8, 27, paint);

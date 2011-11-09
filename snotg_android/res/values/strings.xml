@@ -3,7 +3,7 @@
     <string name="hello">Welcome to Social Networking on the Go!</string>
     <string name="app_name">SNotG!</string>
     <string name="username">username</string>
-    <string name="map_key">0z2Vz2q4WuDjNmM-rACmYxa1DGISMVyQ1Daqzzw</string>
+    <string name="map_key">0UZbSpvZ24TWc1ZhrHVoLSbqJgFjbFEWQRj_Quw</string>
 
     <!-- EXTERNALIZE Google App Engine url http://snotgdepaul1.appspot.com/user"  -->
     <string name="app_engine_url">10.0.2.2</string>
