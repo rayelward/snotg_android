@@ -1,5 +1,7 @@
 package edu.depaul.snotg_android.Activity;
 
+import java.util.Date;
+
 import edu.depaul.snotg_android.R;
 import edu.depaul.snotg_android.Layout.TabBarWidget;
 import edu.depaul.snotg_android.R.id;
@@ -7,6 +9,7 @@ import edu.depaul.snotg_android.R.layout;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 
@@ -28,6 +31,8 @@ public class Snotg_androidActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		
 		//go to main menu from login
+		Log.i("LOgin", "about to start Heartbeat....");
+		new HeartbeatTask().execute(null);
 		
 		Intent m = new Intent(this, TabBarWidget.class);
 		startActivity(m);		
