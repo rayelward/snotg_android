@@ -21,23 +21,25 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.BasicHttpContext;
 
+import static edu.depaul.snotg_android.SnotgAndroidConstants.*;
+
 public class JsonUtility {
 
 	/**
 	 * 
 	 * @param jsonText
-	 * @param url
+	 * @param url - this is path part of a url as with a RESTful service.  This is used
+	 * with the apache's api URIUtils.createURI(...)
 	 * @return String response
 	 */
-    public static String sendRequest(String jsonText, String url)
+    public static String sendRequest(String uriPath, ArrayList<ArrayList<String>> pairs)
     {
     	DefaultHttpClient httpClient = new DefaultHttpClient();
-    	List<NameValuePair> qparams = new ArrayList<NameValuePair>();
-    	qparams.add(new BasicNameValuePair("user_heartbeat", "true"));
-    	qparams.add(new BasicNameValuePair("request_json", jsonText));
+    	List<NameValuePair> qparams = buildQueryStringParamList(pairs);
+
     	URI uri = null;
 		try {
-			uri = URIUtils.createURI("http", "10.0.2.2", 8888, "/user_locations", 
+			uri = URIUtils.createURI(URI_PROTOCOL, URI_BACKEND_HOSTNAME, URI_BACKEND_PORT, uriPath, 
 				    URLEncodedUtils.format(qparams, "UTF-8"), null);
 		} catch (URISyntaxException e1) {
 			// TODO Auto-generated catch block
@@ -67,4 +69,19 @@ public class JsonUtility {
 		
     	return result.toString();
     }
+       
+	
+	/**
+	 * List of name-value pairs where pairs are in a second list, 
+	 * where i=0 is the name and i=1 is the value 
+	 * @return
+	 */
+	public static List<NameValuePair> buildQueryStringParamList(ArrayList<ArrayList<String>> pairs) {
+		ArrayList<NameValuePair> qparams = new ArrayList<NameValuePair>();
+		
+		for (ArrayList<String> pair : pairs) {
+			qparams.add(new BasicNameValuePair(pair.get(0), pair.get(1)));
+		}
+		return qparams;
+	}
 }
