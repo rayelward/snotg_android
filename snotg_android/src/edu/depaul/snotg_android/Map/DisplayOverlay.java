@@ -37,8 +37,6 @@ public class DisplayOverlay extends Overlay {
 			canvas.drawRect(0,0,350,33,paint);
 			paint.setTextSize(11);
 			paint.setARGB(180,0,0,0);
-		    canvas.drawColor(Color.BLACK);
-		    //canvas.drawBitmap(_scratch, 10, 10, null);
 			canvas.drawText("Lat = "+lat+"  Long = "+lon+"  Alt = "+(int)altitude+" m", 8, 14, paint);
 			canvas.drawText("Sat = "+numberSats+" Accur = "+(int)satAccuracy+" m"
                     +" speed = "+(int)speed+" m/s  bearing = "+(int)bearing+" deg", 8, 27, paint);

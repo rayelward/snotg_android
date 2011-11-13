@@ -77,6 +77,9 @@ public class MapMe extends MapActivity implements LocationListener, OnClickListe
 	private ProfileOverlay itemizedOverlay1;
 	private boolean usersDisplayed = false;
 	
+	//Display Overlay
+	private DisplayOverlay displayOverlay;
+	
 	
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -141,9 +144,9 @@ public class MapMe extends MapActivity implements LocationListener, OnClickListe
 		overlays.add(myLocationOverlay);
 		
 		//Set up overlay like above for the sat info!
-		//displayOverlay = new DisplayOverlay();
-		//mapOverlays = mapView.getOverlays();
-		//mapOverlays.add(displayOverlay);
+		displayOverlay = new DisplayOverlay();
+		mapOverlays = mapView.getOverlays();
+		mapOverlays.add(displayOverlay);
 		
 		//Show the button here, the other nearby users
 		nearbyUsersButton = (Button)findViewById(R.id.doAccess);
@@ -155,6 +158,14 @@ public class MapMe extends MapActivity implements LocationListener, OnClickListe
 			
 		});
 	
+	}
+	
+	public static double getLatitude(){
+		return lat;
+	}
+	
+	public static double getLongitude(){
+		return lon;
 	}
 	
 	public void setOverlay1() {
@@ -217,10 +228,9 @@ public class MapMe extends MapActivity implements LocationListener, OnClickListe
 			getSatelliteData();
 			
 			//Push the data into the sat overlay!
-			//if(displayOverlay != null){
-				//displayOverlay.putSatStuff(lat,lon,satAccuracy,bearing,altitude,speed,currentProvider,numberSats);
-				
-			//}
+			if(displayOverlay != null){
+				displayOverlay.putSatStuff(lat,lon,satAccuracy,bearing,altitude,speed,currentProvider,numberSats);				
+			}
 		}
 
 	}

@@ -2,6 +2,7 @@ package edu.depaul.snotg_android.Activity;
 
 import static edu.depaul.snotg_android.SnotgAndroidConstants.EMPTY_JSON_STRING;
 import static edu.depaul.snotg_android.SnotgAndroidConstants.URL_HEARTBEAT;
+import edu.depaul.snotg_android.Map.*;
 
 import java.net.URL;
 import java.util.Date;
@@ -14,6 +15,9 @@ import android.util.Log;
 import edu.depaul.snotg_android.util.JsonUtility;
 
 public class HeartbeatTask extends AsyncTask<URL, Integer, Long> {
+	
+	private double lat = edu.depaul.snotg_android.Map.MapMe.getLatitude();
+	private double lon = edu.depaul.snotg_android.Map.MapMe.getLongitude();
 
 	@Override
 	protected Long doInBackground(URL... params) {
@@ -21,9 +25,13 @@ public class HeartbeatTask extends AsyncTask<URL, Integer, Long> {
 		
 		String jsonText = buildJson();
 		String jsonUserLocation = null;
+		
 		while (true) {
-			jsonUserLocation = JsonUtility.sendRequest(jsonText, URL_HEARTBEAT);
-			Log.i("Heartbeat", new Date().toString() + " --- Returned:  " + jsonUserLocation);
+			lat = edu.depaul.snotg_android.Map.MapMe.getLatitude();
+			lon = edu.depaul.snotg_android.Map.MapMe.getLongitude();
+			//jsonUserLocation = JsonUtility.sendRequest(jsonText, URL_HEARTBEAT);
+			Log.i("Heartbeat", new Date().toString() + ", Latitude: " + lat + ", Longitude: " + lon + " --- Returned:  " + jsonUserLocation);
+			
 			try {
 				Thread.sleep(10000);
 			} catch (InterruptedException e) {; } // do nothing
@@ -40,8 +48,8 @@ public class HeartbeatTask extends AsyncTask<URL, Integer, Long> {
 		JSONObject jObj = new JSONObject();
 		try {
 			jObj.put("userName", "mike");
-			jObj.put("latit", 55.1234);
-			jObj.put("longit", -90.6543);
+			jObj.put("latit", lat);
+			jObj.put("longit", lon);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
