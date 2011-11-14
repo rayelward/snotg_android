@@ -35,7 +35,7 @@ public class HeartbeatTask extends AsyncTask<URL, Integer, Long> {
 			Log.i("Heartbeat", new Date().toString() + ", Latitude: " + lat + ", Longitude: " + lon + " --- Returned:  " + jsonUserLocation);
 
 			try {
-				Thread.sleep(10000);
+				Thread.sleep(HEARTBEAT_INTERVAL);
 			} catch (InterruptedException e) {; } // do nothing
 		}
 	}
