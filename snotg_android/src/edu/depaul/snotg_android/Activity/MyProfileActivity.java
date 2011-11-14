@@ -78,6 +78,10 @@ public class MyProfileActivity  extends Activity  implements OnClickListener {
         Log.d("MyProfileActivity", profile);
         HashMap<String, String> ret = readJsonReturnObj(profile);
         t.setText(ret.get("msg").toString() + ret.get("ts").toString());
+        String message = ret.get("msg").toString();
+        String ts = ret.get("ts").toString();
+        Log.i("Return Info:", message);
+        Log.i("Return TS: ", ts);
 	}
 	
 	public void writeJson() {

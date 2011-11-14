@@ -1,8 +1,15 @@
 package edu.depaul.snotg_android.Map;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.location.GpsSatellite;
 import android.location.GpsStatus;
@@ -34,6 +41,11 @@ public class MapMe extends MapActivity implements LocationListener, OnClickListe
 	//user context
 	static Context context;
 	
+	//private OverlayItem [] userItem;
+	
+	public ArrayList<OverlayItem> userItem = new ArrayList();	
+	
+	/*
 	//Fake data to test the users data
 	//Reference Depauls Coordinates is (41.9249247,-87.6550303)
 	private OverlayItem [] userItem = {
@@ -41,7 +53,7 @@ public class MapMe extends MapActivity implements LocationListener, OnClickListe
             new OverlayItem( new GeoPoint((int)(41.926*1e6),(int) (int)(-87.6550303*1e6)), "Michael", "I'm so hungry"),
             new OverlayItem( new GeoPoint((int)(41.9249370*1e6),(int) (int)(-87.654*1e6)), "Milad", "Android Development is better than iOS!"),
             new OverlayItem( new GeoPoint((int)(41.923*1e6),(int) (int)(-87.657*1e6)), "Jeff", "In class...I need some help!")
-	};
+	};*/
 	
 	private static double lat;
 	private static double lon;
@@ -86,7 +98,39 @@ public class MapMe extends MapActivity implements LocationListener, OnClickListe
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.mapme);
 		
-	
+		//JSON
+		Log.i(TAG, "GPS-JSON");
+
+		Intent intentIn = getIntent();
+        
+        String user = intentIn.getStringExtra("name");
+	    //TODO this url must be externalized in order to migrate environments
+	    String url = "http://10.0.2.2:8888/user_locations?get_user_locs";
+	    String profile = JSONmap.getData(user, url);
+
+	    HashMap<String, String> ret = JSONmap.readJsonReturnObj(profile);
+		
+	    Set set = ret.entrySet();
+		Iterator i = set.iterator();
+		System.out.println("MAPME: Size of Location Array: " + ret.size());
+		while(i.hasNext()){
+			Map.Entry me = (Map.Entry)i.next();
+			System.out.print(me.getKey() + ": ");
+			System.out.println(me.getValue());		
+			
+			userLocationObj userLocation = new userLocationObj();
+			userLocation = (userLocationObj) me.getValue();
+			
+			String userSN = userLocation.getUsername();
+			Double userlat = userLocation.getLat();
+			Double userlon = userLocation.getLon();
+			String userLastUpdated = userLocation.getLastUpdated();
+			
+			userItem.add(new OverlayItem(new GeoPoint((int)(userlat*1e6),(int)(int)(userlon*1e6)),userSN,userLastUpdated));
+		}
+		
+		Log.i("UserLocation Array", "Size of Array: " + userItem.size());
+		
 		// Get application context for later use
         context = getApplicationContext();
         
@@ -169,7 +213,7 @@ public class MapMe extends MapActivity implements LocationListener, OnClickListe
 	}
 	
 	public void setOverlay1() {
-		int userLength = userItem.length;
+		int userLength = userItem.size();
         // Create itemizedOverlay2 if it doesn't exist and display all three items
         if(! usersDisplayed){
         mapOverlays = mapView.getOverlays();	
@@ -177,7 +221,8 @@ public class MapMe extends MapActivity implements LocationListener, OnClickListe
         itemizedOverlay1 = new ProfileOverlay(usermarker,mapView); 
         // Display all three items at once
         for(int i=0; i<userLength; i++){
-            itemizedOverlay1.addOverlay(userItem[i]);
+            itemizedOverlay1.addOverlay(userItem.get(i));
+            System.out.println(userItem.get(i).getTitle());
         }
         mapOverlays.add(itemizedOverlay1);
         usersDisplayed = !usersDisplayed;
