@@ -1,17 +1,14 @@
 package edu.depaul.snotg_android.Activity;
 
-import java.util.Date;
-
-import edu.depaul.snotg_android.R;
-import edu.depaul.snotg_android.Layout.TabBarWidget;
-import edu.depaul.snotg_android.R.id;
-import edu.depaul.snotg_android.R.layout;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import edu.depaul.snotg_android.R;
+import edu.depaul.snotg_android.Chat.XMPPClient;
+import edu.depaul.snotg_android.Layout.TabBarWidget;
 
 public class Snotg_androidActivity extends Activity implements OnClickListener {
     /** Called when the activity is first created. */
@@ -19,6 +16,7 @@ public class Snotg_androidActivity extends Activity implements OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+        
         
         //Just getting into my map activity from here with the login click for now
         View loginButton = findViewById(R.id.button1);
@@ -35,6 +33,10 @@ public class Snotg_androidActivity extends Activity implements OnClickListener {
 		new HeartbeatTask().execute(null);
 		
 		Intent m = new Intent(this, TabBarWidget.class);
+		//////placeholder here for testing chat without going through client.
+		//Intent chat = new Intent(this, XMPPClient.class);
+		
 		startActivity(m);		
+		//startActivity(chat);
 	}
 }

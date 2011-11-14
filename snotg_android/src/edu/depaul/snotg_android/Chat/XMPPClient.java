@@ -47,7 +47,7 @@ public class XMPPClient extends Activity {
 
         super.onCreate(icicle);
         Log.i("XMPPClient", "onCreate called");
-        setContentView(R.layout.main);
+        setContentView(R.layout.chatscreen);
 
         mRecipient = (EditText) this.findViewById(R.id.recipient);
         Log.i("XMPPClient", "mRecipient = " + mRecipient);
