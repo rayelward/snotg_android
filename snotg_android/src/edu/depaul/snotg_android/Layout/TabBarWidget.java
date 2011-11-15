@@ -55,6 +55,6 @@ public class TabBarWidget extends TabActivity {
 	                  .setContent(intent);
 	    tabHost.addTab(spec);
 
-	    tabHost.setCurrentTab(0);
+	    tabHost.setCurrentTab(1);
 	}
 }

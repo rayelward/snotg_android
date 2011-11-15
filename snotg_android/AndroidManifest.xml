@@ -4,27 +4,21 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
-    <uses-sdk android:minSdkVersion="8" />
+    <uses-sdk android:minSdkVersion="7"/>
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
 
     <application
         android:icon="@drawable/snotg_launch_icon"
         android:label="@string/app_name" android:debuggable="true">
         
-        <activity
-            android:label="@string/app_name"
-            android:name=".Activity.Snotg_androidActivity"
-            android:theme="@android:style/Theme.NoTitleBar" >
-            <intent-filter >
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <!-- main menu defined by Ray. -->
+        
+        <!-- TAB MENU -->
         <activity
             android:label="Main Menu"
             android:name=".Activity.MainMenuActivity" >
@@ -45,7 +39,7 @@
              android:theme="@android:style/Theme.NoTitleBar">
         </activity>
 
-        <!-- Garry Defined Activities for Mapping -->
+        <!-- MAPPING -->
         <activity
             android:label="Map Activity"
             android:name=".Activity.AndroidMapActivity" >
@@ -62,6 +56,31 @@
         <uses-library android:name="com.google.android.maps" />
 
         <activity android:name=".Activity.MyProfileActivity" />
+        
+        <!-- AUTHENTICATION -->
+        <!-- <activity android:name=".Activity.AccountList"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>  
+        <activity android:name=".Auth.AppInfo"></activity>
+		-->        
+        
+        <!-- Dummy Login page for mocking auth.  Uncomment this activity and comment above skip Authentication -->
+        <activity
+            android:label="@string/app_name"
+            android:name=".Activity.Snotg_androidActivity"
+            android:theme="@android:style/Theme.NoTitleBar" >
+            <intent-filter >
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Chat.XMPPClient"></activity>
+        
     </application>
 
 </manifest>

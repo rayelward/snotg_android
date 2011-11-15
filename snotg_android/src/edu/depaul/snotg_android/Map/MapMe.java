@@ -1,8 +1,15 @@
 package edu.depaul.snotg_android.Map;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.location.GpsSatellite;
 import android.location.GpsStatus;
@@ -34,8 +41,22 @@ public class MapMe extends MapActivity implements LocationListener, OnClickListe
 	//user context
 	static Context context;
 	
-	private static double lat = 41.9249247;
-	private static double lon = -87.6550303;
+	//private OverlayItem [] userItem;
+	
+	public ArrayList<OverlayItem> userItem = new ArrayList();	
+	
+	/*
+	//Fake data to test the users data
+	//Reference Depauls Coordinates is (41.9249247,-87.6550303)
+	private OverlayItem [] userItem = {
+            new OverlayItem( new GeoPoint((int)(41.9249390*1e6),(int) (int)(-87.656*1e6)), "Kunal", "Going for a 900 mile run!"), 
+            new OverlayItem( new GeoPoint((int)(41.926*1e6),(int) (int)(-87.6550303*1e6)), "Michael", "I'm so hungry"),
+            new OverlayItem( new GeoPoint((int)(41.9249370*1e6),(int) (int)(-87.654*1e6)), "Milad", "Android Development is better than iOS!"),
+            new OverlayItem( new GeoPoint((int)(41.923*1e6),(int) (int)(-87.657*1e6)), "Jeff", "In class...I need some help!")
+	};*/
+	
+	private static double lat;
+	private static double lon;
 	private MapController mapControl;
 	private MapView mapView;
 	LocationManager locman;
@@ -49,35 +70,27 @@ public class MapMe extends MapActivity implements LocationListener, OnClickListe
 	private double altitude;
 	private float speed;
 	private String currentProvider;
+	private List<Overlay> mapOverlays;
 	
 	//Overlay stuff
 	private MyMyLocationOverlay myLocationOverlay;
-	
-	//Satellite information overlay stuff
-	public DisplayOverlay displayOverlay;
-	private List<Overlay> mapOverlays;
+
 	
 	//Button to trigger the overLay of the other nearby users :)
-	private Button accessButton;
+	private Button nearbyUsersButton;
 	
 	//How often do we want to update the location?	
 	long GPSupdateInterval; //millisec
 	float GPSmoveInterval; //In meters
 	
-	//Lets do the magic of overlaying the users around us ok?
+	//Profile Overlay
 	private List<Overlay> userOverlays;
-	private Drawable drawable1;
-	private MyUsersOverlay itemizedOverlay1;
+	private Drawable usermarker;
+	private ProfileOverlay itemizedOverlay1;
 	private boolean usersDisplayed = false;
 	
-	//Fake data to test the users data
-	//Reference Depauls Coordinates is (41.9249247,-87.6550303)
-	private OverlayItem [] userItem = {
-            new OverlayItem( new GeoPoint((int)(41.9249390*1e6),(int) (int)(-87.656*1e6)), "Kunal", "Going for a 900 mile run!"), 
-            new OverlayItem( new GeoPoint((int)(41.926*1e6),(int) (int)(-87.6550303*1e6)), "Michael", "I'm so hungry"),
-            new OverlayItem( new GeoPoint((int)(41.9249370*1e6),(int) (int)(-87.654*1e6)), "Milad", "Android Development is better than iOS!"),
-            new OverlayItem( new GeoPoint((int)(41.923*1e6),(int) (int)(-87.657*1e6)), "Jeff", "In class...I need some help!")
-	};
+	//Display Overlay
+	private DisplayOverlay displayOverlay;
 	
 	
 	public void onCreate(Bundle savedInstanceState){
@@ -85,15 +98,41 @@ public class MapMe extends MapActivity implements LocationListener, OnClickListe
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.mapme);
 		
-	
+		//JSON
+		Log.i(TAG, "GPS-JSON");
+
+		Intent intentIn = getIntent();
+        
+        String user = intentIn.getStringExtra("name");
+	    //TODO this url must be externalized in order to migrate environments
+	    String url = "http://10.0.2.2:8888/user_locations?get_user_locs";
+	    String profile = JSONmap.getData(user, url);
+
+	    HashMap<String, String> ret = JSONmap.readJsonReturnObj(profile);
+		
+	    Set set = ret.entrySet();
+		Iterator i = set.iterator();
+		System.out.println("MAPME: Size of Location Array: " + ret.size());
+		while(i.hasNext()){
+			Map.Entry me = (Map.Entry)i.next();
+			System.out.print(me.getKey() + ": ");
+			System.out.println(me.getValue());		
+			
+			userLocationObj userLocation = new userLocationObj();
+			userLocation = (userLocationObj) me.getValue();
+			
+			String userSN = userLocation.getUsername();
+			Double userlat = userLocation.getLat();
+			Double userlon = userLocation.getLon();
+			String userLastUpdated = userLocation.getLastUpdated();
+			
+			userItem.add(new OverlayItem(new GeoPoint((int)(userlat*1e6),(int)(int)(userlon*1e6)),userSN,userLastUpdated));
+		}
+		
+		Log.i("UserLocation Array", "Size of Array: " + userItem.size());
+		
 		// Get application context for later use
         context = getApplicationContext();
-
-		//Toast just for dev information
-		String textdev = "You must have GPS enabled on your emulator and to push GPS coordinates, goto DDMS and on the left panel you can input the GPS coordinates";
-		int duration = Toast.LENGTH_LONG;
-		Toast toast = Toast.makeText(context, textdev, duration);
-		toast.show();
         
 		GPSupdateInterval = 5000;
 		GPSmoveInterval = 1;
@@ -154,8 +193,8 @@ public class MapMe extends MapActivity implements LocationListener, OnClickListe
 		mapOverlays.add(displayOverlay);
 		
 		//Show the button here, the other nearby users
-		accessButton = (Button)findViewById(R.id.doAccess);
-		accessButton.setOnClickListener(new OnClickListener(){
+		nearbyUsersButton = (Button)findViewById(R.id.doAccess);
+		nearbyUsersButton.setOnClickListener(new OnClickListener(){
 			public void onClick(View v){
 				setOverlay1();
 			}
@@ -165,16 +204,25 @@ public class MapMe extends MapActivity implements LocationListener, OnClickListe
 	
 	}
 	
+	public static double getLatitude(){
+		return lat;
+	}
+	
+	public static double getLongitude(){
+		return lon;
+	}
+	
 	public void setOverlay1() {
-		int userLength = userItem.length;
+		int userLength = userItem.size();
         // Create itemizedOverlay2 if it doesn't exist and display all three items
         if(! usersDisplayed){
         mapOverlays = mapView.getOverlays();	
-        drawable1 = this.getResources().getDrawable(R.drawable.user); 
-        itemizedOverlay1 = new MyUsersOverlay(drawable1); 
+        usermarker = this.getResources().getDrawable(R.drawable.usermarker); 
+        itemizedOverlay1 = new ProfileOverlay(usermarker,mapView); 
         // Display all three items at once
         for(int i=0; i<userLength; i++){
-            itemizedOverlay1.addOverlay(userItem[i]);
+            itemizedOverlay1.addOverlay(userItem.get(i));
+            System.out.println(userItem.get(i).getTitle());
         }
         mapOverlays.add(itemizedOverlay1);
         usersDisplayed = !usersDisplayed;
@@ -226,8 +274,7 @@ public class MapMe extends MapActivity implements LocationListener, OnClickListe
 			
 			//Push the data into the sat overlay!
 			if(displayOverlay != null){
-				displayOverlay.putSatStuff(lat,lon,satAccuracy,bearing,altitude,speed,currentProvider,numberSats);
-				
+				displayOverlay.putSatStuff(lat,lon,satAccuracy,bearing,altitude,speed,currentProvider,numberSats);				
 			}
 		}
 

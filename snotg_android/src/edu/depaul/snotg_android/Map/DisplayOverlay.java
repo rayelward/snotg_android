@@ -1,5 +1,9 @@
 package edu.depaul.snotg_android.Map;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 
 import com.google.android.maps.MapView;
@@ -18,6 +22,10 @@ public class DisplayOverlay extends Overlay {
 	private float speed;
 	private String currentProvider;
 	public static boolean showData = true;
+	
+	//private final Context context;
+	//Bitmap _scratch = BitmapFactory.decodeResource(getResources(), R.drawable.icon);
+
 	
 	@Override
 	public void draw(Canvas canvas, MapView mapview, boolean shadow){

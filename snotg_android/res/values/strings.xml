@@ -34,5 +34,5 @@
 	-->
 	<string name="profile_shout">Yo yo yo. I am at DePaul CDM!</string> 
 	<string name="profile_desc">I am interested in creating a new android social media app. I want to use Java and incorportate geo-spatial functionality. Is there anyone out there interested?</string> 
-    <string name="profile_url">http://10.0.2.2:8888/user?</string>
+    <string name="profile_retrieve_url">http://10.0.2.2:8888/user?</string>
 </resources>
