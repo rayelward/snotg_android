@@ -21,13 +21,11 @@ public class HeartbeatTask extends AsyncTask<URL, Integer, Long> {
 	
 	private double lat = edu.depaul.snotg_android.Map.MapMe.getLatitude();
 	private double lon = edu.depaul.snotg_android.Map.MapMe.getLongitude();
-	
+	private static String jsonUserLocation = null;
 	
 	@Override
 	protected Long doInBackground(URL... params) {
 		//Log.i("Heartbeat", "In Heartbeat....");
-		
-		String jsonUserLocation = null;
 		while (true) {
 			lat = edu.depaul.snotg_android.Map.MapMe.getLatitude();
 			lon = edu.depaul.snotg_android.Map.MapMe.getLongitude();
@@ -39,6 +37,12 @@ public class HeartbeatTask extends AsyncTask<URL, Integer, Long> {
 			} catch (InterruptedException e) {; } // do nothing
 		}
 	}
+	
+	public static String getJSONuserLocation(){
+		return jsonUserLocation;
+	}
+	
+	
 
 
     protected void onPostExecute(Long result) {
