@@ -34,6 +34,7 @@ import android.view.View.OnClickListener;
 //import android.widget.Spinner;
 import android.widget.TextView;
 //import android.widget.Toast;
+import edu.depaul.snotg_android.Chat.XMPPClient;
 
 public class MyProfileActivity  extends Activity  implements OnClickListener {
 
@@ -72,6 +73,17 @@ public class MyProfileActivity  extends Activity  implements OnClickListener {
 				boolean profileUpdateSuccessful = updateProfile();
 				Log.i( "MyProfileActivity", "profile update successful? " + profileUpdateSuccessful);
 			}				
+		});
+		
+		View chatButton = findViewById( R.id.profile_chatButton );
+		chatButton.setOnClickListener( new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Log.i( "MyProfileActivity", "clicked chat button" );
+				Intent chat = new Intent( getBaseContext(), XMPPClient.class);
+				//Intent chat = new Intent(this, XMPPClient.class);	
+				startActivity(chat);				
+			}
 		});
 	}
 	

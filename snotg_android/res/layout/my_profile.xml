@@ -56,12 +56,25 @@
 	    	android:text="Cancel" />
 	    		        
 	</LinearLayout>
+    <LinearLayout android:id="@+id/profile_chatPingButtons"
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:layout_below="@+id/profile_editButton"
+    	android:weightSum="1.0">
     	
-	<Button android:id="@+id/profile_pingButton"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true" android:layout_alignParentRight="true"
-        android:layout_below="@+id/profile_editButton"
-        android:text="Ping the Google App Engine" />
+		<Button android:id="@+id/profile_pingButton"
+	        android:layout_width="fill_parent" android:layout_height="wrap_content"
+	        android:layout_weight=".5"
+	        android:layout_alignParentLeft="true" 
+	        android:text="Ping the Google App Engine" />
+	        
+	    <Button android:id="@+id/profile_chatButton"
+	    	android:layout_width="fill_parent" android:layout_height="wrap_content"
+	    	android:layout_weight=".5"
+	    	android:layout_alignParentRight="true"
+	    	android:text="Chat" />	    	
+	    	
+	</LinearLayout>
         
     <TextView android:id="@+id/profile_pingText"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
