@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	<string name="url">http://10.0.2.2:8888/user</string>
     <string name="hello">Hello World, welcome to SNotG!</string>
     <string name="app_name">SNotG!</string>
     <string name="username">username</string>
@@ -24,12 +25,14 @@
 
     <!-- Profile strings -->
 	<string name="profile_name">\"Heine Schmidt\"</string> 
+	<!--  
 	<string name="i_am_curr">"I am currently - "</string> 
 	<string-array name="arr_online_status">
 		<item>On-line</item> 
 		<item>Off-line</item> 
 	</string-array>
+	-->
 	<string name="profile_shout">Yo yo yo. I am at DePaul CDM!</string> 
-	<string name="profile_descr">I am interested in creating a new android social media app. I want to use Java and incorportate geo-spatial functionality. Is there anyone out there interested?</string> 
-        
+	<string name="profile_desc">I am interested in creating a new android social media app. I want to use Java and incorportate geo-spatial functionality. Is there anyone out there interested?</string> 
+    <string name="profile_url">http://10.0.2.2:8888/user?</string>
 </resources>
