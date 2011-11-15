@@ -40,7 +40,7 @@ public class XMPPClient extends Activity {
     //private XMPPConnection connection;
     private JabberSmackAPI c;
     private String username = "se491snotg";
-    private String password = "se491snotg";
+    private String password =  "se491snotg";
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle icicle) {
