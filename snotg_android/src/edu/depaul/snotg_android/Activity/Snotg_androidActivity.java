@@ -32,11 +32,11 @@ public class Snotg_androidActivity extends Activity implements OnClickListener {
 		Log.i("LOgin", "about to start Heartbeat....");
 		new HeartbeatTask().execute(null);
 		
-		//Intent m = new Intent(this, TabBarWidget.class);
+		Intent m = new Intent(this, TabBarWidget.class);
 		//////placeholder here for testing chat without going through client.
-		Intent chat = new Intent(this, XMPPClient.class);
+		//Intent chat = new Intent(this, XMPPClient.class);
 		
-		//startActivity(m);		
-		startActivity(chat);
+		startActivity(m);		
+		//startActivity(chat);
 	}
 }
