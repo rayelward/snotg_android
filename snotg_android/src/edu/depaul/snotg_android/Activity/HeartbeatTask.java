@@ -30,7 +30,7 @@ public class HeartbeatTask extends AsyncTask<URL, Integer, Long> {
 			lat = edu.depaul.snotg_android.Map.MapMe.getLatitude();
 			lon = edu.depaul.snotg_android.Map.MapMe.getLongitude();
 			jsonUserLocation = JsonUtility.sendRequest(URI_PATH_HEARTBEAT, getQueryParams());
-			Log.i("Heartbeat", new Date().toString() + ", Latitude: " + lat + ", Longitude: " + lon + " --- Returned:  " + jsonUserLocation);
+			Log.i("Heartbeat", new Date().toString() + ", Latitude: " + lat + ", Longitude: " + lon + " for:" + STATE_USERNAME + " --- Returned:  " + jsonUserLocation);
 
 			try {
 				Thread.sleep(HEARTBEAT_INTERVAL);

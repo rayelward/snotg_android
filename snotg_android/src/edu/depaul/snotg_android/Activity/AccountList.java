@@ -1,6 +1,7 @@
 package edu.depaul.snotg_android.Activity;
 
 import edu.depaul.snotg_android.R;
+import edu.depaul.snotg_android.SnotgAndroidConstants;
 import edu.depaul.snotg_android.Auth.AppInfo;
 import android.accounts.Account;
 import android.accounts.AccountManager;
@@ -28,8 +29,15 @@ public class AccountList extends ListActivity {
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		Account account = (Account)getListView().getItemAtPosition(position);
+		String username = null;
+		if (account != null)
+			username = account.name.substring(0, account.name.indexOf("@"));
+		
 		Intent intent = new Intent(this, AppInfo.class);
 		intent.putExtra("account", account);
+		//intent.putExtra("username", username);
+		SnotgAndroidConstants.STATE_USERNAME = username;
+		
 		startActivity(intent);
 	}
 }

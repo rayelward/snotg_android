@@ -3,6 +3,7 @@ package edu.depaul.snotg_android.Layout;
 
 import edu.depaul.snotg_android.R;
 import edu.depaul.snotg_android.Activity.AndroidMapActivity;
+import edu.depaul.snotg_android.Activity.HeartbeatTask;
 import edu.depaul.snotg_android.Activity.MyProfileActivity;
 import edu.depaul.snotg_android.Activity.NearbyListActivity;
 import edu.depaul.snotg_android.Activity.SettingsActivity;
@@ -12,6 +13,7 @@ import android.app.TabActivity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TabHost;
 
 public class TabBarWidget extends TabActivity {
@@ -56,5 +58,9 @@ public class TabBarWidget extends TabActivity {
 	    tabHost.addTab(spec);
 
 	    tabHost.setCurrentTab(1);
+	    
+	    // Start the Heartbeat thread
+	    Log.i("LOgin", "about to start Heartbeat....");
+		new HeartbeatTask().execute(null);
 	}
 }

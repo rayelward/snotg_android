@@ -58,7 +58,7 @@
         <activity android:name=".Activity.MyProfileActivity" />
         
         <!-- AUTHENTICATION -->
-        <!-- <activity android:name=".Activity.AccountList"
+         <activity android:name=".Activity.AccountList"
                   android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -66,10 +66,10 @@
             </intent-filter>
         </activity>  
         <activity android:name=".Auth.AppInfo"></activity>
-		-->        
+		<!-- -->        
         
         <!-- Dummy Login page for mocking auth.  Uncomment this activity and comment above skip Authentication -->
-        <activity
+    <!--    <activity
             android:label="@string/app_name"
             android:name=".Activity.Snotg_androidActivity"
             android:theme="@android:style/Theme.NoTitleBar" >
@@ -78,7 +78,9 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+        </activity> -->
+        
+        <!-- CHAT -->
         <activity android:name=".Chat.XMPPClient"></activity>
         
     </application>

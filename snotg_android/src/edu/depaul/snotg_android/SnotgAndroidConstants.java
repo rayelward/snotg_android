@@ -13,4 +13,6 @@ public class SnotgAndroidConstants {
 	
 	public static final String EMPTY_JSON_STRING = "[]";
 
+	// State Variables used be the app to hold user state
+	public static String STATE_USERNAME = "";
 }
