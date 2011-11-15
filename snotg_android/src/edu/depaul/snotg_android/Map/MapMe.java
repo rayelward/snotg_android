@@ -106,7 +106,7 @@ public class MapMe extends MapActivity implements LocationListener, OnClickListe
         String user = intentIn.getStringExtra("name");
 	    //TODO this url must be externalized in order to migrate environments
 	    String url = "http://10.0.2.2:8888/user_locations?get_user_locs";
-	    String profile = JSONmap.getData(user, url);
+	    String profile = edu.depaul.snotg_android.Activity.HeartbeatTask.getJSONuserLocation();
 
 	    HashMap<String, String> ret = JSONmap.readJsonReturnObj(profile);
 		
