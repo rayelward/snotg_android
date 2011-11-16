@@ -11,7 +11,12 @@ public class UserProfile {
     private String description;
     private String shout;    
 
-    public UserProfile() { }
+    public UserProfile() { 
+    	userKey = 0L;
+    	profileName = "";
+    	description = "";
+    	shout = "";
+    }
     
     public UserProfile(String json) throws JSONException {
     	JSONObject obj = new JSONObject( json );

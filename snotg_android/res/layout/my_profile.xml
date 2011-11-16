@@ -5,7 +5,7 @@
     <TextView android:id="@+id/profile_nameText"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:layout_alignParentLeft="true" android:layout_alignParentRight="true"
-        android:text="@string/profile_name"
+
         android:textSize="24sp" />
         
     <ImageView android:id="@+id/profile_avatarImage"
@@ -19,7 +19,7 @@
         android:layout_below="@+id/profile_avatarImage" 
         android:inputType="textMultiLine"
         android:enabled="false"
-        android:text="@string/profile_shout" />
+ />
         
     <EditText android:id="@+id/profile_descText"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
         android:layout_below="@+id/profile_shoutText"
         android:inputType="textMultiLine"
         android:enabled="false"
-        android:text="@string/profile_desc" />
+ />
 
     <Button android:id="@+id/profile_editButton"
     	android:layout_width="wrap_content" android:layout_height="wrap_content"

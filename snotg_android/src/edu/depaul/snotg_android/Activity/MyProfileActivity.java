@@ -18,6 +18,7 @@ import org.json.JSONObject;
 
 import edu.depaul.snotg_android.R;
 import edu.depaul.snotg_android.Profile.UserProfile;
+import edu.depaul.snotg_android.Profile.UserProfileDbHelper;
 //import edu.depaul.snotg_android.R.id;
 //import edu.depaul.snotg_android.R.layout;
 
@@ -32,16 +33,31 @@ import android.view.View.OnClickListener;
 //import android.widget.ImageView;
 //import android.widget.LinearLayout;
 //import android.widget.Spinner;
+import android.widget.EditText;
 import android.widget.TextView;
 //import android.widget.Toast;
 import edu.depaul.snotg_android.Chat.XMPPClient;
 
 public class MyProfileActivity  extends Activity  implements OnClickListener {
 
+	private static final String TAG = "MyProfileActivity";
+	
+	private UserProfileDbHelper dbHelper;
+	private UserProfile currentProfile;
+	private EditText description;
+	private EditText shout;
+	private TextView name;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
         setContentView(R.layout.my_profile);
+        
+		description = (EditText) findViewById( R.id.profile_descText );
+		shout = (EditText) findViewById( R.id.profile_shoutText );
+		name = (TextView) findViewById( R.id.profile_nameText );
+        dbHelper = new UserProfileDbHelper( getBaseContext() );
+        populateProfile();
      
         View pingButton = findViewById (R.id.profile_pingButton );
 		pingButton.setOnClickListener(this);
@@ -50,7 +66,7 @@ public class MyProfileActivity  extends Activity  implements OnClickListener {
 		editButton.setOnClickListener( new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Log.i( "MyProfileActivity", "clicked edit button" );
+				Log.i( TAG, "clicked edit button" );
 				setEditMode( true );				
 			}			
 		});
@@ -59,8 +75,9 @@ public class MyProfileActivity  extends Activity  implements OnClickListener {
 		cancelButton.setOnClickListener( new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Log.i( "MyProfileActivity", "clicked cancel button" );
-				setEditMode( false );				
+				Log.i( TAG, "clicked cancel button" );
+				setEditMode( false );
+				revertAnyChanges();
 			}				
 		});
 		
@@ -68,10 +85,11 @@ public class MyProfileActivity  extends Activity  implements OnClickListener {
 		submitButton.setOnClickListener( new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Log.i( "MyProfileActivity", "clicked submit button" );
+				Log.i( TAG, "clicked submit button" );
 				setEditMode( false );	
 				boolean profileUpdateSuccessful = updateProfile();
-				Log.i( "MyProfileActivity", "profile update successful? " + profileUpdateSuccessful);
+				Log.i( TAG, "profile update successful? " + profileUpdateSuccessful);
+				
 			}				
 		});
 		
@@ -79,12 +97,37 @@ public class MyProfileActivity  extends Activity  implements OnClickListener {
 		chatButton.setOnClickListener( new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Log.i( "MyProfileActivity", "clicked chat button" );
+				Log.i( TAG, "clicked chat button" );
 				Intent chat = new Intent( getBaseContext(), XMPPClient.class);
 				//Intent chat = new Intent(this, XMPPClient.class);	
 				startActivity(chat);				
 			}
 		});
+	}
+	
+	private void populateProfile() {
+		Log.i( TAG, "populating profile" );
+		UserProfile[] profiles = dbHelper.getUserProfiles();
+		Log.i( TAG, "# profiles in DB: " + profiles.length );
+		if( profiles.length==0 ) {
+			currentProfile = new UserProfile();
+			description.setHint("Enter description");
+			shout.setHint("Enter shout");
+			name.setHint("Enter name");			
+		} else {
+			UserProfile p = profiles[0];			
+			description.setText(p.getDescription());			
+			shout.setText( p.getShout() );
+			name.setText( p.getProfileName() );
+			currentProfile = p;
+		}
+		
+	}
+	
+	private void revertAnyChanges() {
+		description.setText(currentProfile.getDescription());
+		name.setText(currentProfile.getProfileName());
+		shout.setText(currentProfile.getShout());
 	}
 	
 	private void setEditMode( boolean editable ) {
@@ -107,10 +150,10 @@ public class MyProfileActivity  extends Activity  implements OnClickListener {
 		String cmd = "retrieveProfile";
 		String url = this.getString( R.string.profile_retrieve_url ) + "userKey=" + userKey + "&cmd=" + cmd + "&userName=" + userName;
 		String retrieveProfileResponse = getData( userKey, url );
-		Log.i( "MyProfileActivity", retrieveProfileResponse );
+		Log.i( TAG, retrieveProfileResponse );
 		try {
 			UserProfile up = new UserProfile( retrieveProfileResponse );
-			Log.i( "MyProfileActivity", up.toString() );
+			Log.i( TAG, up.toString() );
 		} catch( JSONException e) {
 			e.printStackTrace();
 		}
@@ -118,16 +161,27 @@ public class MyProfileActivity  extends Activity  implements OnClickListener {
 	}
 	
 	private boolean updateProfile() {
+		currentProfile.setDescription(description.getText().toString());
+		currentProfile.setProfileName(name.getText().toString());
+		currentProfile.setShout(shout.getText().toString());
+		Log.i(TAG, currentProfile.toString());
+		if( currentProfile.getUserKey()==0 ) {
+			dbHelper.createUserProfile(currentProfile);
+		} else {
+			dbHelper.updateUserProfile(currentProfile);
+		}
+		
+		
 		//TODO: get this from phone context???
 		String userName = "jeffrey.w.anderson@gmail.com";
 		String userKey = "12345";
 		String cmd = "updateProfile";
 		String url = this.getString( R.string.profile_retrieve_url ) + "userKey=" + userKey + "&cmd=" + cmd + "&userName=" + userName;
 		String updateProfileResponse = getData( userKey, url );
-		Log.i( "MyProfileActivity", updateProfileResponse );
+		Log.i( TAG, updateProfileResponse );
 		try {
 			UserProfile up = new UserProfile( updateProfileResponse );
-			Log.i( "MyProfileActivity", up.toString() );
+			Log.i( TAG, up.toString() );
 		} catch( JSONException e) {
 			e.printStackTrace();
 		}
@@ -137,7 +191,7 @@ public class MyProfileActivity  extends Activity  implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		//Context context = getApplicationContext();
-		Log.i("MyProfileActivity", "Michalak Button clicked"); 
+		Log.i(TAG, "Michalak Button clicked"); 
 		//Toast.makeText(this, "Btn Clicked.  Looking up data....",Toast.LENGTH_SHORT).show();		 
 		/*LinearLayout ll = new LinearLayout(this);
 		tv = new TextView(this);*/        
@@ -147,7 +201,7 @@ public class MyProfileActivity  extends Activity  implements OnClickListener {
         String url = this.getString( R.string.url );       
         String profile = getData(user, url); 
         TextView t=(TextView)findViewById( R.id.profile_pingText ); 
-        Log.d("MyProfileActivity", profile);
+        Log.d(TAG, profile);
         HashMap<String, String> ret = readJsonReturnObj(profile);
         t.setText(ret.get("msg").toString() + ret.get("ts").toString());
 	}
@@ -219,5 +273,13 @@ public class MyProfileActivity  extends Activity  implements OnClickListener {
 		}   
 		return ret;
 	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		dbHelper.closeItUp();
+	}
+    
+    
 
 }
