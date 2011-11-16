@@ -59,7 +59,7 @@ public class HeartbeatTask extends AsyncTask<URL, Integer, Long> {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		Log.i("JSON", jObj.toString());
+		Log.i("Heartbeat", jObj.toString());
 		
 		if (jObj != null)
 			return jObj.toString();
