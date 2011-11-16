@@ -32,6 +32,10 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 public class XMPPClient extends Activity {
+	
+	//Hardcoding recipient for demo purposes:
+	private String to = "rayelward@gmail.com";
+	
     private ArrayList<String> messages = new ArrayList<String>();
     private Handler mHandler = new Handler();
     private EditText mRecipient;
@@ -49,8 +53,8 @@ public class XMPPClient extends Activity {
         Log.i("XMPPClient", "onCreate called");
         setContentView(R.layout.chatscreen);
 
-        mRecipient = (EditText) this.findViewById(R.id.recipient);
-        Log.i("XMPPClient", "mRecipient = " + mRecipient);
+        //mRecipient = (EditText) this.findViewById(R.id.recipient);
+        //Log.i("XMPPClient", "mRecipient = " + mRecipient);
         mSendText = (EditText) this.findViewById(R.id.sendText);
         Log.i("XMPPClient", "mSendText = " + mSendText);
         mList = (ListView) this.findViewById(R.id.listMessages);
@@ -70,7 +74,7 @@ public class XMPPClient extends Activity {
         Button send = (Button) this.findViewById(R.id.send);
         send.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                String to = mRecipient.getText().toString();
+                //String to = mRecipient.getText().toString();
                 String text = mSendText.getText().toString();
 
                 Log.i("XMPPClient", "Sending text [" + text + "] to [" + to + "]");

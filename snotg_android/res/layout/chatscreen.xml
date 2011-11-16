@@ -3,38 +3,12 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:minWidth="70dp"
-            android:text="Recipient:" />
-
-        <EditText
-            android:id="@+id/recipient"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:autoText="false"
-            android:capitalize="none"
-            android:minWidth="250dp"
-            android:scrollHorizontally="true"
-            android:singleLine="true"
-            android:textSize="16sp" >
-
-            <requestFocus />
-        </EditText>
-    </LinearLayout>
+    
 
     <ListView
         android:id="@+id/listMessages"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:layout_weight="1"
         android:scrollbars="horizontal" >
     </ListView>
@@ -47,7 +21,9 @@
         android:capitalize="none"
         android:scrollHorizontally="true"
         android:singleLine="true"
-        android:textSize="16sp" />
+        android:textSize="16sp" > 
+        <requestFocus />
+        </EditText>
 
     <Button
         android:id="@+id/send"
