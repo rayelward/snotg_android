@@ -103,6 +103,19 @@ public class MyProfileActivity  extends Activity  implements OnClickListener {
 				startActivity(chat);				
 			}
 		});
+		
+		View otherButton = findViewById( R.id.profile_otherProfileButton );
+		otherButton.setOnClickListener( new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Log.i( TAG, "clicked other button" );
+				Intent other = new Intent( getBaseContext(), OtherProfileActivity.class);
+				Bundle b = new Bundle();
+				b.putSerializable("profile", currentProfile);
+				other.putExtras(b);
+				startActivity(other);				
+			}
+		});
 	}
 	
 	private void populateProfile() {

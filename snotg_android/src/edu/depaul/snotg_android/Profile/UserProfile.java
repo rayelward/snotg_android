@@ -1,12 +1,16 @@
 package edu.depaul.snotg_android.Profile;
 
+import java.io.Serializable;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 
-public class UserProfile {
+public class UserProfile implements Serializable {
 
-    private Long userKey;
+	private static final long serialVersionUID = 1L;
+
+	private Long userKey;
     private String profileName;
     private String description;
     private String shout;    

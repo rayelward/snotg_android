@@ -70,9 +70,15 @@
 	        
 	    <Button android:id="@+id/profile_chatButton"
 	    	android:layout_width="fill_parent" android:layout_height="wrap_content"
-	    	android:layout_weight=".5"
+	    	android:layout_weight=".25"
 	    	android:layout_alignParentRight="true"
-	    	android:text="Chat" />	    	
+	    	android:text="Chat" />	
+	    	
+	    <Button android:id="@+id/profile_otherProfileButton"
+	    	android:layout_width="fill_parent" android:layout_height="wrap_content"
+	    	android:layout_weight=".25"
+	    	android:text="Other" />
+	    	    	
 	    	
 	</LinearLayout>
         
