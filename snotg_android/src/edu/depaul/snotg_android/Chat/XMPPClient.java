@@ -34,7 +34,7 @@ import android.widget.ListView;
 public class XMPPClient extends Activity {
 	
 	//Hardcoding recipient for demo purposes:
-	private String to = "rayelward@gmail.com";
+	private String to = "mmich8266@gmail.com";
 	
     private ArrayList<String> messages = new ArrayList<String>();
     private Handler mHandler = new Handler();
