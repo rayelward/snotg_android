@@ -110,8 +110,11 @@ public class MyProfileActivity  extends Activity  implements OnClickListener {
 			public void onClick(View v) {
 				Log.i( TAG, "clicked other button" );
 				Intent other = new Intent( getBaseContext(), OtherProfileActivity.class);
+				UserProfile up = new UserProfile();
+				up.setShout("Help me with my SE450 homework!");
+				up.setDescription("I'm a grad student at DePaul in the school of Computing and Digital Media");
 				Bundle b = new Bundle();
-				b.putSerializable("profile", currentProfile);
+				b.putSerializable("profile", up);
 				other.putExtras(b);
 				startActivity(other);				
 			}

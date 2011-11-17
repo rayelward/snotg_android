@@ -46,7 +46,7 @@
 	        android:layout_weight=".5"
 	        android:layout_alignParentLeft="true"
 	        android:visibility="invisible"
-	        android:text="Submit" />
+	        android:text="Save" />
 	        
 	    <Button android:id="@+id/profile_cancelButton"
 	    	android:layout_width="fill_parent" android:layout_height="wrap_content"
@@ -63,20 +63,20 @@
     	android:weightSum="1.0">
     	
 		<Button android:id="@+id/profile_pingButton"
-	        android:layout_width="fill_parent" android:layout_height="wrap_content"
-	        android:layout_weight=".5"
+	        android:layout_width="wrap_content" android:layout_height="wrap_content"
+	        android:layout_weight=".33"
 	        android:layout_alignParentLeft="true" 
 	        android:text="Ping" />
 	        
 	    <Button android:id="@+id/profile_chatButton"
-	    	android:layout_width="fill_parent" android:layout_height="wrap_content"
-	    	android:layout_weight=".25"
+	    	android:layout_width="wrap_content" android:layout_height="wrap_content"
+	    	android:layout_weight=".34"
 	    	android:layout_alignParentRight="true"
 	    	android:text="Chat" />	
 	    	
 	    <Button android:id="@+id/profile_otherProfileButton"
-	    	android:layout_width="fill_parent" android:layout_height="wrap_content"
-	    	android:layout_weight=".25"
+	    	android:layout_width="wrap_content" android:layout_height="wrap_content"
+	    	android:layout_weight=".33"
 	    	android:text="Other" />
 	    	    	
 	    	
