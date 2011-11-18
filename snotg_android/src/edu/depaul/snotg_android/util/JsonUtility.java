@@ -1,5 +1,10 @@
 package edu.depaul.snotg_android.util;
 
+import static edu.depaul.snotg_android.SnotgAndroidConstants.URI_BACKEND_HOSTNAME;
+import static edu.depaul.snotg_android.SnotgAndroidConstants.URI_BACKEND_PORT;
+import static edu.depaul.snotg_android.SnotgAndroidConstants.URI_PATH_HEARTBEAT;
+import static edu.depaul.snotg_android.SnotgAndroidConstants.URI_PROTOCOL;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,10 +23,7 @@ import org.apache.http.client.utils.URIUtils;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.BasicHttpContext;
-
-import static edu.depaul.snotg_android.SnotgAndroidConstants.*;
 
 public class JsonUtility {
 
@@ -39,22 +41,19 @@ public class JsonUtility {
 
     	URI uri = null;
     	String sUri = null;
-    	//TODO Fix URI connection refused exception
-		/*
-		 * URI began getting refused connection.  Was working, but stopped and couldn't figure out why
-		 * TEMP just to piece togeter following url:   http://10.0.2.2:8888/user_locations?get_user_locs
 		try {
 			uri = URIUtils.createURI(URI_PROTOCOL, URI_BACKEND_HOSTNAME, URI_BACKEND_PORT, uriPath, 
 				    URLEncodedUtils.format(qparams, "UTF-8"), null);
 		} catch (URISyntaxException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}*/
-		StringBuilder sb = new StringBuilder();
+		}
+		//TODO TEMP for debugging URI connection timeouts.  REMOVE
+		/*StringBuilder sb = new StringBuilder();
 		sb.append(URI_PROTOCOL).append("://").append(URI_BACKEND_HOSTNAME).append(":").append(URI_BACKEND_PORT).append(URI_PATH_HEARTBEAT);
-		sb.append("?").append(URLEncodedUtils.format(qparams, "UTF-8"));
+		sb.append("?").append(URLEncodedUtils.format(qparams, "UTF-8"));*/
 
-		HttpGet request = new HttpGet(sb.toString());
+		HttpGet request = new HttpGet(uri);
 		StringBuilder result = new StringBuilder();
 		
 		try 
