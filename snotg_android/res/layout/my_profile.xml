@@ -2,90 +2,92 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent" android:layout_height="fill_parent">
 	
-    <TextView android:id="@+id/profile_nameText"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true" android:layout_alignParentRight="true"
-
-        android:textSize="24sp" />
-        
-    <ImageView android:id="@+id/profile_avatarImage"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_below="@+id/profile_nameText"
-        android:src="@drawable/avatar_img" />
-        
-	<EditText android:id="@+id/profile_shoutText"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true" android:layout_alignParentRight="true"
-        android:layout_below="@+id/profile_avatarImage" 
-        android:inputType="textMultiLine"
-        android:enabled="false"
- />
-        
-    <EditText android:id="@+id/profile_descText"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true" android:layout_alignParentRight="true"
-        android:layout_below="@+id/profile_shoutText"
-        android:inputType="textMultiLine"
-        android:enabled="false"
- />
-
-    <Button android:id="@+id/profile_editButton"
-    	android:layout_width="wrap_content" android:layout_height="wrap_content"
-    	android:layout_alignParentLeft="true" android:layout_alignParentRight="true"
-    	android:layout_below="@+id/profile_descText"
-    	android:text="Edit" />
-    	
-    <LinearLayout android:id="@+id/profile_cancelSubmitButtons"
-    	android:layout_width="fill_parent" 
-    	android:layout_height="wrap_content"
-    	android:layout_below="@+id/profile_descText"
-    	android:weightSum="1.0" >
-    
-    	<Button android:id="@+id/profile_submitButton"
-	        android:layout_width="fill_parent" android:layout_height="wrap_content"
-	        android:layout_weight=".5"
-	        android:layout_alignParentLeft="true"
-	        android:visibility="invisible"
-	        android:text="Save" />
+	<LinearLayout android:id="@+id/profile_containerLayout"
+		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:orientation="vertical"
+		android:weightSum="1.0" >
 	        
-	    <Button android:id="@+id/profile_cancelButton"
-	    	android:layout_width="fill_parent" android:layout_height="wrap_content"
-	    	android:layout_weight=".5"
-	    	android:layout_alignParentRight="true"    		    	
-	    	android:visibility="invisible"
-	    	android:text="Cancel" />
-	    		        
-	</LinearLayout>
-    <LinearLayout android:id="@+id/profile_chatPingButtons"
-    	android:layout_width="fill_parent"
-    	android:layout_height="wrap_content"
-    	android:layout_below="@+id/profile_editButton"
-    	android:weightSum="1.0">
-    	
-		<Button android:id="@+id/profile_pingButton"
-	        android:layout_width="wrap_content" android:layout_height="wrap_content"
-	        android:layout_weight=".33"
-	        android:layout_alignParentLeft="true" 
-	        android:text="Ping" />
+	    <ImageView android:id="@+id/profile_avatarImage"	        
+	        android:src="@drawable/avatar_img"
+	        android:layout_width="fill_parent" android:layout_height="fill_parent"
+	        android:layout_weight=".5" 
+	        android:enabled="false" />
 	        
-	    <Button android:id="@+id/profile_chatButton"
-	    	android:layout_width="wrap_content" android:layout_height="wrap_content"
-	    	android:layout_weight=".34"
-	    	android:layout_alignParentRight="true"
-	    	android:text="Chat" />	
-	    	
-	    <Button android:id="@+id/profile_otherProfileButton"
-	    	android:layout_width="wrap_content" android:layout_height="wrap_content"
-	    	android:layout_weight=".33"
-	    	android:text="Other" />
-	    	    	
-	    	
+	    <LinearLayout android:id="@+id/profile_containerLayoutAllButImage"
+	    	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	    	android:orientation="vertical"
+	    	android:layout_below="@+id/profile_avatarImage"
+	    	android:layout_weight=".5" >
+	        
+		    <TextView android:id="@+id/profile_nameText"
+		        android:layout_width="wrap_content" android:layout_height="wrap_content"		        
+		        android:layout_alignParentLeft="true" android:layout_alignParentRight="true"
+		        android:textSize="24sp" />
+		        
+			<EditText android:id="@+id/profile_shoutText"
+		        android:layout_width="fill_parent" android:layout_height="wrap_content"
+		        android:layout_alignParentLeft="true" android:layout_alignParentRight="true"
+		        android:layout_below="@+id/profile_avatarImage" 
+		        android:inputType="textMultiLine"
+		        android:enabled="false" />
+		        
+		    <EditText android:id="@+id/profile_descText"
+		        android:layout_width="fill_parent" android:layout_height="wrap_content"
+		        android:layout_alignParentLeft="true" android:layout_alignParentRight="true"
+		        android:layout_below="@+id/profile_shoutText"
+		        android:inputType="textMultiLine"
+		        android:enabled="false" />
+		    	
+		    <LinearLayout android:id="@+id/profile_cancelSubmitButtons"
+		    	android:layout_width="fill_parent" android:layout_height="wrap_content"
+		    	android:layout_below="@+id/profile_descText"
+		    	android:weightSum="1.0" >	    
+		    	<Button android:id="@+id/profile_submitButton"
+			        android:layout_width="fill_parent" android:layout_height="wrap_content"
+			        android:layout_weight=".33"
+			        android:layout_alignParentLeft="true"
+			        android:enabled="false"
+			        android:text="Save" />	
+			    <Button android:id="@+id/profile_editButton"
+		    		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		    		android:layout_weight=".34"
+		    		android:text="Edit" />	        
+			    <Button android:id="@+id/profile_cancelButton"
+			    	android:layout_width="fill_parent" android:layout_height="wrap_content"
+			    	android:layout_weight=".33"
+			    	android:layout_alignParentRight="true"    		    	
+			    	android:enabled="false"
+			    	android:text="Cancel" />		    		        
+			</LinearLayout>
+			
+		    <LinearLayout android:id="@+id/profile_chatPingButtons"
+		    	android:layout_width="fill_parent" android:layout_height="wrap_content"
+		    	android:layout_below="@+id/profile_editButton"
+		    	android:weightSum="1.0">	    	
+				<Button android:id="@+id/profile_pingButton"
+			        android:layout_width="fill_parent" android:layout_height="wrap_content"
+			        android:layout_weight=".33"
+			        android:layout_alignParentLeft="true" 
+			        android:text="Ping" />		        
+			    <Button android:id="@+id/profile_chatButton"
+			    	android:layout_width="fill_parent" android:layout_height="wrap_content"
+			    	android:layout_weight=".34"
+			    	android:layout_alignParentRight="true"
+			    	android:text="Chat" />		    	
+			    <Button android:id="@+id/profile_otherProfileButton"
+			    	android:layout_width="fill_parent" android:layout_height="wrap_content"
+			    	android:layout_weight=".33"
+			    	android:text="Other" />		    	
+			</LinearLayout>
+		        
+		    <TextView android:id="@+id/profile_pingText"
+		        android:layout_width="wrap_content" android:layout_height="wrap_content"
+		        android:layout_alignParentLeft="true" android:layout_alignParentRight="true"
+		        android:layout_below="@+id/profile_pingButton"
+		        android:text="" />
+		        
+		</LinearLayout>
+
 	</LinearLayout>
-        
-    <TextView android:id="@+id/profile_pingText"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true" android:layout_alignParentRight="true"
-        android:layout_below="@+id/profile_pingButton"
-        android:text="" />
         
 </RelativeLayout>
