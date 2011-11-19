@@ -31,11 +31,11 @@ public class AndroidMapActivity extends Activity implements OnClickListener{
         //Just setting the context for the toasting info for development
         context = getApplicationContext();
         
-		//Toast just for dev information
+		/*Toast just for dev information
 		String textdev = "Push the Track Present Location - Garry";
 		int duration = Toast.LENGTH_LONG;
 		Toast toast = Toast.makeText(context, textdev, duration);
-		toast.show();
+		toast.show();*/
         
         //Click listeners for the buttons
         //View firstButton = findViewById(R.id.geocode_button);
