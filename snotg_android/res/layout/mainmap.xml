@@ -5,6 +5,7 @@
       android:layout_height="wrap_content"
       android:padding="10dip">
     
+    <!-- 
         <LinearLayout 
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -61,7 +62,7 @@
                 android:text="@string/goLabel" />
                         
         </LinearLayout>
-                
+        -->         
             <Button 
                 android:id="@+id/presentLocation_button"
                 android:layout_width="wrap_content"

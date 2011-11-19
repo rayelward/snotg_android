@@ -6,13 +6,16 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.widget.Toast;
 
 import com.google.android.maps.MapView;
 import com.google.android.maps.OverlayItem;
 
 import edu.depaul.snotg_android.Activity.MyProfileActivity;
+import edu.depaul.snotg_android.Activity.OtherProfileActivity;
 import edu.depaul.snotg_android.Activity.Snotg_androidActivity;
+import edu.depaul.snotg_android.Profile.UserProfile;
 
 
 public class ProfileOverlay extends BalloonItemizedOverlay<OverlayItem>{
@@ -58,7 +61,14 @@ public class ProfileOverlay extends BalloonItemizedOverlay<OverlayItem>{
 	protected boolean onBalloonTap(int index, OverlayItem item) {
 		Toast.makeText(c, "Retrieving profile for index " + index,
 				Toast.LENGTH_LONG).show();
-		Intent m = new Intent(c,MyProfileActivity.class);
+		Intent other = new Intent( c, OtherProfileActivity.class);
+		UserProfile up = new UserProfile();
+		up.setShout("Help me with my SE450 homework!");
+		up.setDescription("I'm a grad student at DePaul in the school of Computing and Digital Media");
+		Bundle b = new Bundle();
+		b.putSerializable("profile", up);
+		other.putExtras(b);
+		Intent m = new Intent(c,OtherProfileActivity.class);
 		c.startActivity(m);
 		return true;
 	}

@@ -31,17 +31,17 @@ public class AndroidMapActivity extends Activity implements OnClickListener{
         //Just setting the context for the toasting info for development
         context = getApplicationContext();
         
-		//Toast just for dev information
+		/*Toast just for dev information
 		String textdev = "Push the Track Present Location - Garry";
 		int duration = Toast.LENGTH_LONG;
 		Toast toast = Toast.makeText(context, textdev, duration);
-		toast.show();
+		toast.show();*/
         
         //Click listeners for the buttons
-        View firstButton = findViewById(R.id.geocode_button);
-        firstButton.setOnClickListener(this);
-        View secondButton = findViewById(R.id.latlong_button);
-        secondButton.setOnClickListener(this);
+        //View firstButton = findViewById(R.id.geocode_button);
+        //firstButton.setOnClickListener(this);
+        //View secondButton = findViewById(R.id.latlong_button);
+        //secondButton.setOnClickListener(this);
         View thirdButton = findViewById(R.id.presentLocation_button);
         thirdButton.setOnClickListener(this);
     }
@@ -50,6 +50,7 @@ public class AndroidMapActivity extends Activity implements OnClickListener{
     public void onClick(View v){
     	
     	switch(v.getId()){
+    	/*
     	case R.id.geocode_button:
     		Log.i("Button","Button 1 Pushed");
     		Intent j = new Intent(this, ShowTheMap.class);
@@ -73,7 +74,7 @@ public class AndroidMapActivity extends Activity implements OnClickListener{
         		startActivity(k);
     		}    		
     	break;
-    	
+    	*/
     	case R.id.presentLocation_button:
     		Log.i("Button","Button 3 pushed");
     		Intent m = new Intent(this, MapMe.class);
