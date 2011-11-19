@@ -225,7 +225,7 @@ public class MapMe extends MapActivity implements LocationListener, OnClickListe
             System.out.println(userItem.get(i).getTitle());
         }
         mapOverlays.add(itemizedOverlay1);
-        usersDisplayed = !usersDisplayed;
+        usersDisplayed = true;
         // Remove each item successively with button clicks
         } else {			
             itemizedOverlay1.removeItem(itemizedOverlay1.size()-1);

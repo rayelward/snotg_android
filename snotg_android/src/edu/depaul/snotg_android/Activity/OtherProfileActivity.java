@@ -21,13 +21,13 @@ public class OtherProfileActivity extends Activity {
 		setContentView(R.layout.other_profile);
 		
 		Bundle b = getIntent().getExtras();
-		UserProfile p = (UserProfile) b.get("profile");
+		//UserProfile p = (UserProfile) b.get("profile");
 		
 		TextView shoutText = (TextView) findViewById( R.id.profile_otherShoutText );
-		shoutText.setText(p.getShout());
+		//shoutText.setText(p.getShout());
 		
 		TextView descriptionText = (TextView) findViewById( R.id.profile_otherDescriptionText );
-		descriptionText.setText(p.getDescription());		
+		//descriptionText.setText(p.getDescription());		
 		
 		View chatButton = findViewById( R.id.profile_otherChatButton );
 		chatButton.setOnClickListener( new OnClickListener() {

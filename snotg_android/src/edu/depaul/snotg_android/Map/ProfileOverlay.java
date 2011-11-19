@@ -12,6 +12,7 @@ import com.google.android.maps.MapView;
 import com.google.android.maps.OverlayItem;
 
 import edu.depaul.snotg_android.Activity.MyProfileActivity;
+import edu.depaul.snotg_android.Activity.OtherProfileActivity;
 import edu.depaul.snotg_android.Activity.Snotg_androidActivity;
 
 
@@ -58,7 +59,7 @@ public class ProfileOverlay extends BalloonItemizedOverlay<OverlayItem>{
 	protected boolean onBalloonTap(int index, OverlayItem item) {
 		Toast.makeText(c, "Retrieving profile for index " + index,
 				Toast.LENGTH_LONG).show();
-		Intent m = new Intent(c,MyProfileActivity.class);
+		Intent m = new Intent(c,OtherProfileActivity.class);
 		c.startActivity(m);
 		return true;
 	}
