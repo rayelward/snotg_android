@@ -68,8 +68,7 @@ public class ProfileOverlay extends BalloonItemizedOverlay<OverlayItem>{
 		Bundle b = new Bundle();
 		b.putSerializable("profile", up);
 		other.putExtras(b);
-		Intent m = new Intent(c,OtherProfileActivity.class);
-		c.startActivity(m);
+		c.startActivity(other);
 		return true;
 	}
 	
