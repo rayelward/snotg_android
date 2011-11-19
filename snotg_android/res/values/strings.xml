@@ -5,7 +5,8 @@
     <string name="app_name">SNotG!</string>
     <string name="username">username</string>
     <!-- Michaels? API Key <string name="map_key">0z2Vz2q4WuDjNmM-rACmYxa1DGISMVyQ1Daqzzw</string> -->
-    <!-- Garry's Map API Key --><string name="map_key">0UZbSpvZ24TWc1ZhrHVoLSbqJgFjbFEWQRj_Quw</string>
+    <!-- Garry's Map API Key<string name="map_key">0UZbSpvZ24TWc1ZhrHVoLSbqJgFjbFEWQRj_Quw</string> -->
+    <!-- Ray's Desktop's Map Api key --> <string name="map_key">0w8L4-yLsUND38g690Fl0DcGS3g2O59-5IUhPhg</string>
 
     <!-- EXTERNALIZE Google App Engine url http://snotgdepaul1.appspot.com/user"  -->
     <string name="app_engine_url">10.0.2.2</string>

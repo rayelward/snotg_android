@@ -2,7 +2,7 @@ package edu.depaul.snotg_android;
 
 public class SnotgAndroidConstants {
 
-	public static final long HEARTBEAT_INTERVAL = 10 * 1000; // sec * 1000
+	public static final long HEARTBEAT_INTERVAL = 30 * 1000; // sec * 1000
 	
 	// These are used to create an apache http client request.  See JsonUtility
 	public static final String URI_BACKEND_HOSTNAME = "se491snotg.appspot.com";
