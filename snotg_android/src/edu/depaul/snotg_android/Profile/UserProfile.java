@@ -13,13 +13,15 @@ public class UserProfile implements Serializable {
 	private Long userKey;
     private String profileName;
     private String description;
-    private String shout;    
+    private String shout; 
+    private byte[] avatar;
 
     public UserProfile() { 
     	userKey = 0L;
     	profileName = "";
     	description = "";
     	shout = "";
+    	avatar = new byte[0];
     }
     
     public UserProfile(String json) throws JSONException {
@@ -63,6 +65,14 @@ public class UserProfile implements Serializable {
 		this.userKey = userKey;
 	}
 	
+	public byte[] getAvatar() {
+		return avatar;
+	}
+	
+	public void setAvatar(byte[] avatar) {
+		this.avatar = avatar;
+	}
+	
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
@@ -71,6 +81,7 @@ public class UserProfile implements Serializable {
 		sb.append("\n  profileName: "); sb.append( profileName );
 		sb.append("\n  shout: "); sb.append( shout );
 		sb.append("\n  description: "); sb.append( description );
+		sb.append("\n  avatar: "); sb.append( "a byte[]" );
 		sb.append("\n]");
 		return sb.toString();
 	}

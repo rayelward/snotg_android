@@ -1,6 +1,7 @@
 package edu.depaul.snotg_android.Activity;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,6 +29,10 @@ import edu.depaul.snotg_android.Profile.UserProfileDbHelper;
 import android.app.Activity;
 //import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -39,6 +44,7 @@ import android.view.View.OnClickListener;
 //import android.widget.ImageView;
 //import android.widget.LinearLayout;
 //import android.widget.Spinner;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -55,172 +61,119 @@ public class MyProfileActivity  extends Activity {
 	private EditText description;
 	private EditText shout;
 	private TextView name;
-	ImageView avatarImage;
+	private ImageView avatarImage;
 	private Uri picFileUri;
-	
-	public static final int MEDIA_TYPE_IMAGE = 1;
+	private Button pingButton;
+	private Button editButton;
+	private Button submitButton;
+	private Button cancelButton;
+	private Button chatButton;
+	private Button otherButton;
 
-	/** Create a file Uri for saving an image or video */
-	private static Uri getOutputMediaFileUri(int type){
-	      return Uri.fromFile( getOutputMediaFile(type) );
+	private static Uri getOutputImageFileUri() {
+	      return Uri.fromFile( getOutputImageFile() );
 	}
 	
-	/** Create a File for saving an image or video */
-	private static File getOutputMediaFile(int type){
-	    // To be safe, you should check that the SDCard is mounted
-	    // using Environment.getExternalStorageState() before doing this.
-		
+	private static File getOutputImageFile() {
 		String mediaState = Environment.getExternalStorageState();
 		if( mediaState.equals(Environment.MEDIA_MOUNTED) ) {
 			Log.i(TAG, "media mounted");
 		} else if( mediaState.equals(Environment.MEDIA_SHARED) ) {
 			Log.i(TAG, "media shared");
 		} else {
-			Log.i(TAG, mediaState );
+			Log.i(TAG, "media state: " + mediaState );
 		}
-
-	    File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-	              Environment.DIRECTORY_PICTURES), "MyCameraApp");
-	    
-	    // This location works best if you want the created images to be shared
-	    // between applications and persist after your app has been uninstalled.
-
-	    // Create the storage directory if it does not exist
+	    File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory( Environment.DIRECTORY_PICTURES ), "snotg");
 	    if (! mediaStorageDir.exists()){
-	        if (! mediaStorageDir.mkdirs()){
-	            Log.d(TAG, "failed to create directory");
+	        if (! mediaStorageDir.mkdirs() ){
+	            Log.d( TAG, "failed to create directory: " + mediaStorageDir);
 	            return null;
 	        }
 	    }
-
-	    // Create a media file name
-	    String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-	    File mediaFile;
-	    if (type == MEDIA_TYPE_IMAGE){
-	        mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-	        "IMG_"+ timeStamp + ".jpg");
-	    } else {
-	        return null;
-	    }
-
+	    String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format( new Date() );
+	    File mediaFile = new File(mediaStorageDir.getPath() + File.separator + "IMG_"+ timeStamp + ".jpg");
 	    return mediaFile;
 	}
 
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-        setContentView(R.layout.my_profile);        
+	protected void onCreate( Bundle savedInstanceState ) {
+		super.onCreate( savedInstanceState );
+        setContentView( R.layout.my_profile );  
+        populateFields();        
+        populateProfile();        
+        setListeners();
+
+	}	
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		dbHelper.closeItUp();
+	} 
+	
+	private void populateFields() {
+		dbHelper = new UserProfileDbHelper( getBaseContext() );
 		description = (EditText) findViewById( R.id.profile_descText );
 		shout = (EditText) findViewById( R.id.profile_shoutText );
 		name = (TextView) findViewById( R.id.profile_nameText );
-        dbHelper = new UserProfileDbHelper( getBaseContext() );
-        populateProfile();        
-        avatarImage = (ImageView) findViewById( R.id.profile_avatarImage );
-        avatarImage.setEnabled(false);
-        avatarImage.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View v) {
-				Log.i(TAG, "clicked avatar image");
-				if( avatarImage.isEnabled() ) {
-					picFileUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
-					Intent captureImage = new Intent( MediaStore.ACTION_IMAGE_CAPTURE );
-					captureImage.putExtra(MediaStore.EXTRA_OUTPUT, picFileUri);
-					startActivityForResult( captureImage, TAKE_PIC );
-				}
-			}        	
-        });     
-        View pingButton = findViewById (R.id.profile_pingButton );
-		pingButton.setOnClickListener( new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				//Context context = getApplicationContext();
-				Log.i(TAG, "Michalak Button clicked"); 
-				//Toast.makeText(this, "Btn Clicked.  Looking up data....",Toast.LENGTH_SHORT).show();		 
-				/*LinearLayout ll = new LinearLayout(this);
-				tv = new TextView(this);*/        
-		        Intent intentIn = getIntent();
-		        //Long id = Long.parseLong(intentIn.getStringExtra("notesid")); to get a param
-		        String user = intentIn.getStringExtra("name");
-		        String url = MyProfileActivity.this.getString( R.string.url );       
-		        String profile = getData(user, url); 
-		        TextView t=(TextView)findViewById( R.id.profile_pingText ); 
-		        Log.d(TAG, profile);
-		        HashMap<String, String> ret = readJsonReturnObj(profile);
-		        t.setText(ret.get("msg").toString() + ret.get("ts").toString());
-			}
-		});		
-		View editButton = findViewById( R.id.profile_editButton );
-		editButton.setOnClickListener( new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Log.i( TAG, "clicked edit button" );
-				setEditMode( true );				
-			}			
-		});		
-		View cancelButton = findViewById( R.id.profile_cancelButton );
-		cancelButton.setOnClickListener( new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Log.i( TAG, "clicked cancel button" );
-				setEditMode( false );
-				revertAnyChanges();
-			}				
-		});		
-		View submitButton = findViewById( R.id.profile_submitButton );
-		submitButton.setOnClickListener( new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Log.i( TAG, "clicked submit button" );
-				setEditMode( false );	
-				boolean profileUpdateSuccessful = updateProfile();
-				Log.i( TAG, "profile update successful? " + profileUpdateSuccessful);
-				
-			}				
-		});		
-		View chatButton = findViewById( R.id.profile_chatButton );
-		chatButton.setOnClickListener( new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Log.i( TAG, "clicked chat button" );
-				Intent chat = new Intent( getBaseContext(), XMPPClient.class);
-				//Intent chat = new Intent(this, XMPPClient.class);	
-				startActivity(chat);				
-			}
-		});		
-		View otherButton = findViewById( R.id.profile_otherProfileButton );
-		otherButton.setOnClickListener( new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Log.i( TAG, "clicked other button" );
-				Intent other = new Intent( getBaseContext(), OtherProfileActivity.class);
-				UserProfile up = new UserProfile();
-				up.setShout("Help me with my SE450 homework!");
-				up.setDescription("I'm a grad student at DePaul in the school of Computing and Digital Media");
-				Bundle b = new Bundle();
-				b.putSerializable("profile", up);
-				other.putExtras(b);
-				startActivity(other);				
-			}
-		});
+		avatarImage = (ImageView) findViewById( R.id.profile_avatarImage );
+		editButton = (Button) findViewById( R.id.profile_editButton );
+		cancelButton = (Button) findViewById( R.id.profile_cancelButton );
+		submitButton = (Button) findViewById( R.id.profile_submitButton );
+		pingButton = (Button) findViewById (R.id.profile_pingButton );
+		chatButton = (Button) findViewById( R.id.profile_chatButton );
+		otherButton = (Button) findViewById( R.id.profile_otherProfileButton );
+	}
+	
+	private void setListeners() {
+        avatarImage.setOnClickListener(new AvatarImageOnClickListener() );      			
+		editButton.setOnClickListener( new EditButtonOnClickListener() );			
+		cancelButton.setOnClickListener( new CancelButtonOnClickListener() );			
+		submitButton.setOnClickListener( new SubmitButtonOnClickListener() );
+		pingButton.setOnClickListener( new PingButtonOnClickListener() );
+		chatButton.setOnClickListener( new ChatButtonOnClickListener() );		
+		otherButton.setOnClickListener( new OtherButtonOnClickListener() );
 	}
 	
 	private void populateProfile() {
 		Log.i( TAG, "populating profile" );
+		currentProfile = fetchLocalProfile();
+		if( currentProfile == null ) {
+			currentProfile = fetchRemoteProfile();
+			if( currentProfile == null ) {
+				currentProfile = new UserProfile();
+				setHints();
+			}
+		} 	
+	}
+	
+	private UserProfile fetchLocalProfile() {
+		Log.i( TAG, "fetching local profile" );
 		UserProfile[] profiles = dbHelper.getUserProfiles();
-		Log.i( TAG, "# profiles in DB: " + profiles.length );
+		Log.i( TAG, "# profiles in local DB: " + profiles.length );
 		if( profiles.length==0 ) {
-			currentProfile = new UserProfile();
-			description.setHint("Enter description");
-			shout.setHint("Enter shout");
-			name.setHint("Enter name");			
+			return null;		
 		} else {
 			UserProfile p = profiles[0];			
-			description.setText(p.getDescription());			
+			description.setText( p.getDescription() );			
 			shout.setText( p.getShout() );
 			name.setText( p.getProfileName() );
-			currentProfile = p;
-		}		
+			avatarImage.setImageBitmap( BitmapFactory.decodeByteArray( p.getAvatar(), 0, p.getAvatar().length) );
+			return p;
+		}
+	}
+	
+	private UserProfile fetchRemoteProfile() {
+		Log.i( TAG, "fetching remote profile");
+		//TODO: implement this method
+		return null;		
+	}
+	
+	private void setHints() {
+		description.setHint( R.string.profile_descriptionHint );
+		shout.setHint( R.string.profile_shoutHint );
+		name.setHint( R.string.profile_nameHint );	
 	}
 	
 	private void revertAnyChanges() {
@@ -230,35 +183,30 @@ public class MyProfileActivity  extends Activity {
 	}
 	
 	private void setEditMode( boolean editable ) {
-		View shout = findViewById( R.id.profile_shoutText );
-		shout.setEnabled( editable );
-		View desc = findViewById( R.id.profile_descText );
-		desc.setEnabled( editable );	
-		View edit = findViewById( R.id.profile_editButton );
-		edit.setEnabled( editable ? false : true);
-		View cancel = findViewById( R.id.profile_cancelButton );
-		cancel.setEnabled( editable ? true : false );
-		View submit = findViewById( R.id.profile_submitButton );
-		submit.setEnabled( editable ? true : false );
 		avatarImage.setEnabled( editable );
+		shout.setEnabled( editable );
+		description.setEnabled( editable );	
+		editButton.setEnabled( !editable );
+		cancelButton.setEnabled( editable );
+		submitButton.setEnabled( editable );
 	}
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		Log.i(TAG, "requestCode: " + requestCode + " --- resultCode: " + resultCode);
 		Log.i(TAG, "picFileUri: " + picFileUri );
-		if( data!=null ) {
-			Log.i(TAG, " --- Intent: " + data.getDataString());
+		if( data != null ) {
+			Log.i(TAG, " --- Intent: " + data.getDataString() );
 		} else {
-			Log.i(TAG, "data is null");
+			Log.i(TAG, "Intent is null");
 		}
 		if( requestCode==TAKE_PIC ) {
 			if( resultCode==RESULT_OK ) {
 				//Log.i(TAG, "data.toURI(): " + data.toURI());
 				//Log.i(TAG, "data.getData(): " + data.getData());
-				avatarImage.setImageURI(picFileUri);
+				avatarImage.setImageURI( picFileUri );
 			} else if( resultCode==RESULT_CANCELED ) {
-				Log.i(TAG, "user cancelled request to capture image");
+				Log.i( TAG, "user cancelled request to capture image" );
 			}
 		}
 	}
@@ -281,14 +229,15 @@ public class MyProfileActivity  extends Activity {
 	}
 	
 	private boolean updateProfile() {
-		currentProfile.setDescription(description.getText().toString());
-		currentProfile.setProfileName(name.getText().toString());
-		currentProfile.setShout(shout.getText().toString());
+		currentProfile.setDescription( description.getText().toString() );
+		currentProfile.setProfileName( name.getText().toString() );
+		currentProfile.setShout( shout.getText().toString() );
+		currentProfile.setAvatar( getAvatarImageAsByteArray() );
 		Log.i(TAG, currentProfile.toString());
-		if( currentProfile.getUserKey()==0 ) {
-			dbHelper.createUserProfile(currentProfile);
+		if( currentProfile.getUserKey() == 0 ) {
+			dbHelper.createUserProfile( currentProfile );
 		} else {
-			dbHelper.updateUserProfile(currentProfile);
+			dbHelper.updateUserProfile( currentProfile );
 		}		
 		//TODO: get this from phone context???
 //		String userName = "jeffrey.w.anderson@gmail.com";
@@ -303,10 +252,105 @@ public class MyProfileActivity  extends Activity {
 //		} catch( JSONException e) {
 //			e.printStackTrace();
 //		}
-		return false;
+		return true;
+	}
+	
+	public byte[] getAvatarImageAsByteArray() {
+		Bitmap bitmap = ((BitmapDrawable) avatarImage.getDrawable()).getBitmap();
+		return getByteArray( bitmap );	
+	}
+	
+	public byte[] getByteArray(Bitmap bitmap) {
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		bitmap.compress(CompressFormat.JPEG, 0, bos);
+		return bos.toByteArray();
+	}
+	
+	public Bitmap getBitmap(byte[] bitmap) {
+	    return BitmapFactory.decodeByteArray(bitmap , 0, bitmap.length);
 	}
 
-
+	
+	private class AvatarImageOnClickListener implements OnClickListener {
+		@Override
+		public void onClick(View v) {
+			Log.i(TAG, "clicked avatar image");
+			if( avatarImage.isEnabled() ) {
+				picFileUri = getOutputImageFileUri();
+				Intent captureImage = new Intent( MediaStore.ACTION_IMAGE_CAPTURE );
+				captureImage.putExtra( MediaStore.EXTRA_OUTPUT, picFileUri );
+				startActivityForResult( captureImage, TAKE_PIC );
+			}
+		} 
+	}
+	
+	private class EditButtonOnClickListener implements OnClickListener {
+		@Override
+		public void onClick(View v) {
+			Log.i( TAG, "clicked edit button" );
+			setEditMode( true );				
+		}
+	}
+	
+	private class CancelButtonOnClickListener implements OnClickListener {
+		@Override
+		public void onClick(View v) {
+			Log.i( TAG, "clicked cancel button" );
+			setEditMode( false );
+			revertAnyChanges();
+		}
+	}
+	
+	
+	private class SubmitButtonOnClickListener implements OnClickListener {
+		@Override
+		public void onClick(View v) {
+			Log.i( TAG, "clicked submit button" );
+			setEditMode( false );	
+			boolean profileUpdateSuccessful = updateProfile();
+			Log.i( TAG, "profile update successful? " + profileUpdateSuccessful);			
+		}
+	}
+	
+	private class PingButtonOnClickListener implements OnClickListener {
+		@Override
+		public void onClick(View v) {
+			Log.i(TAG, "clicked ping button");        
+	        Intent intentIn = getIntent();
+	        String user = intentIn.getStringExtra("name");
+	        String url = MyProfileActivity.this.getString( R.string.url );       
+	        String profile = getData(user, url); 
+	        TextView t=(TextView)findViewById( R.id.profile_pingText ); 
+	        Log.d(TAG, profile);
+	        HashMap<String, String> ret = readJsonReturnObj(profile);
+	        t.setText(ret.get("msg").toString() + ret.get("ts").toString());
+		}
+	}
+	
+	private class ChatButtonOnClickListener implements OnClickListener {
+		@Override
+		public void onClick(View v) {
+			Log.i( TAG, "clicked chat button" );
+			Intent chat = new Intent( getBaseContext(), XMPPClient.class);
+			startActivity(chat);				
+		}
+	}
+	
+	private class OtherButtonOnClickListener implements OnClickListener {
+		@Override
+		public void onClick(View v) {
+			Log.i( TAG, "clicked other button" );
+			Intent other = new Intent( getBaseContext(), OtherProfileActivity.class );
+			UserProfile up = new UserProfile();
+			up.setShout( "Help me with my SE450 homework!" );
+			up.setDescription( "I'm a grad student at DePaul in the school of Computing and Digital Media" );
+			Bundle b = new Bundle();
+			b.putSerializable( "profile", up );
+			other.putExtras( b );
+			startActivity( other );				
+		}
+	}
+	
 	
 	public void writeJson() {
 		JSONObject object = new JSONObject();
@@ -375,11 +419,5 @@ public class MyProfileActivity  extends Activity {
 		}   
 		return ret;
 	}
-
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		dbHelper.closeItUp();
-	}    
 
 }

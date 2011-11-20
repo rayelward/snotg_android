@@ -10,13 +10,17 @@ public class UserProfileDbHelper extends SQLiteOpenHelper {
 	
 	private static final String TAG = UserProfileDbHelper.class.getSimpleName();
 	private static final String PROFILE_TABLE_NAME = "PROFILE";
-
-	public UserProfileDbHelper(Context context) {
-		super(context, PROFILE_TABLE_NAME, null, 1);
+	private static final int VERSION = 2;
+	private static final String createProfileTableSql = "CREATE TABLE " + PROFILE_TABLE_NAME + "( _id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, description TEXT, shout TEXT, avatar BLOB );";
+	private static final String insertProfileSql = "INSERT INTO " + PROFILE_TABLE_NAME + "(name, description, shout, avatar) VALUES(?,?,?,?)";
+	private static final String getProfilesSql = "SELECT _id, name, description, shout, avatar FROM " + PROFILE_TABLE_NAME;
+	private static final String updateProfileSql = "UPDATE " + PROFILE_TABLE_NAME + " SET name=?, description=?, shout=?, avatar=? WHERE _id=?";
+	
+	public UserProfileDbHelper( Context context ) {
+		super( context, PROFILE_TABLE_NAME, null, VERSION );
 	}
 	
-	public UserProfile[] getUserProfiles() {
-		String getProfilesSql = "SELECT _id, name, description, shout FROM " + PROFILE_TABLE_NAME;
+	public UserProfile[] getUserProfiles() {		
 		SQLiteDatabase db = getReadableDatabase();
 		Cursor c = db.rawQuery(getProfilesSql, null);
 		int numProfiles = c.getCount();
@@ -24,10 +28,11 @@ public class UserProfileDbHelper extends SQLiteOpenHelper {
 		for( int i=0; i<numProfiles; i++) {
 			UserProfile p = new UserProfile();
 			c.moveToPosition(i);
-			p.setUserKey(c.getLong(0));
-			p.setProfileName(c.getString(1));
-			p.setDescription(c.getString(2));
-			p.setShout(c.getString(3));
+			p.setUserKey( c.getLong(0) );
+			p.setProfileName( c.getString(1) );
+			p.setDescription( c.getString(2) );
+			p.setShout( c.getString(3) );
+			p.setAvatar( c.getBlob(4) );
 			profiles[i] = p;
 		}
 		c.close();
@@ -35,31 +40,25 @@ public class UserProfileDbHelper extends SQLiteOpenHelper {
 		return profiles;
 	}
 	
-	public void createUserProfile(UserProfile p) {
-		String insertProfileSql = "INSERT INTO " + PROFILE_TABLE_NAME + "(name, description, shout) VALUES(?,?,?)";
+	public void createUserProfile(UserProfile p) {		
 		SQLiteDatabase db = getWritableDatabase();
-		db.execSQL(insertProfileSql, new Object[]{ p.getProfileName(), p.getDescription(), p.getShout()});
+		db.execSQL(insertProfileSql, new Object[]{ p.getProfileName(), p.getDescription(), p.getShout(), p.getAvatar() } );
 	}
 	
 	public void updateUserProfile(UserProfile p) {
-		String updateProfileSql = "UPDATE " + PROFILE_TABLE_NAME + " SET name=?, description=?, shout=? WHERE _id=?";
 		SQLiteDatabase db = getWritableDatabase();
-		db.execSQL(updateProfileSql, new Object[]{ p.getProfileName(), p.getDescription(), p.getShout(), p.getUserKey()});
+		db.execSQL( updateProfileSql, new Object[]{ p.getProfileName(), p.getDescription(), p.getShout(), p.getAvatar(), p.getUserKey()} );
 	}
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		Log.i(TAG, "Creating profile DB");
-		createProfileTable(db);
+		Log.i( TAG, "Creating profile DB" );
+		createProfileTable( db );
 	}
 	
 	private void createProfileTable(SQLiteDatabase db) {
-		String createSql = "CREATE TABLE " + PROFILE_TABLE_NAME + "(" +
-							" _id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-							" name TEXT, " +
-							" description TEXT, " +
-							" shout TEXT);";
-		db.execSQL(createSql);
+		Log.i( TAG, "Creating profile table" );
+		db.execSQL( createProfileTableSql );
 	}
 
 	@Override
