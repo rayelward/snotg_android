@@ -57,7 +57,7 @@ public class TabBarWidget extends TabActivity {
 	                  .setContent(intent);
 	    tabHost.addTab(spec);
 
-	    tabHost.setCurrentTab(1);
+	    tabHost.setCurrentTab(0);
 	    
 	    // Start the Heartbeat thread
 	    Log.i("LOgin", "about to start Heartbeat....");
